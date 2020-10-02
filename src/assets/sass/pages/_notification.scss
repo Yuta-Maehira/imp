@@ -1,0 +1,81 @@
+.notification-section {
+  margin: 0;
+  padding: 0;
+  
+  .notification {
+    margin: 50px 0 0;
+    @media only screen and (min-width: 1025px)  {
+      margin: 50px 7.5% 0;
+    }
+  
+    .paginate {
+      @media only screen and (min-width: 1025px)  {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      
+      & > div + div {
+        border-top: 1px solid #c0c0c0;
+      }
+  
+      .notification-box {
+        padding: 7px 0;
+        @media only screen and (min-width: 1025px)  {
+          position: relative;
+          width: 45%;
+          margin-bottom: 30px;
+          padding: 10px 10px;
+          border: 1px solid #c0c0c0;
+          border-radius: 10px;
+          box-shadow: 5px 5px 10px #d3d3d3;
+        }
+  
+        .notification-link-box {
+          display: flex;
+  
+          .notification-info {
+            width: 100%;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+            padding: 3px 0;
+  
+            .notification-title {
+              font-size: 0.8rem;
+              font-weight: bold;
+              color: #696969;
+            }
+  
+            .notification-description {
+              font-size: 0.6rem;
+              color: #a9a9a9;
+            }
+            
+            .notification-destination {
+              text-align: right;
+              @media only screen and (min-width: 1025px)  {
+                position: absolute;
+                top: -15px;
+                right: -5px;
+              }
+  
+              p {
+                display: inline;
+                padding: 7px 7px;
+                background: #ff8c00;
+                border-radius: 5px;
+                font-size: 0.7rem;
+                color: #ffe4b5;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .looked {
+      opacity: 0.6;
+    }
+  }
+}

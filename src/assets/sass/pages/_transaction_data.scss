@@ -1,0 +1,49 @@
+.transaction-data {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 50px 0 0;
+  @media only screen and (min-width: 1025px) {
+    margin: 50px 7.5% 0;
+  }
+
+  li {
+    width: 45%;
+    margin-bottom: 30px;
+    @media only screen and (min-width: 1025px)  {
+      width: 23%;
+    }
+
+    .title {
+      padding: 5px 0;
+      background: #d3d3d3;
+      text-align: center;
+      @media only screen and (min-width: 1025px)  {
+        font-size: 1.2rem;
+      }
+    }
+
+    .value {
+      padding: 10px 0;
+      font-size: 2rem;
+      background: #fffaf0;
+      text-align: center;
+      color: #ff8c00;
+      @media only screen and (min-width: 1025px)  {
+        padding: 10px 0;
+        font-size: 3rem;
+        background: #fffaf0;
+        text-align: center;
+        color: #ff8c00;
+      }
+    }
+  }
+}
+
+.caution {
+  margin: 10px 0 30px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #ff0000;
+  text-align: right;
+}

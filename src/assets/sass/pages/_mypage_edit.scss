@@ -1,0 +1,201 @@
+.mypage-edit-section {
+  margin: 0;
+  padding: 0;
+  
+  .profile-input-form {
+    @media only screen and (min-width: 1025px) {
+      margin: 30px 7.5%;
+    }
+  
+    .basic-data {
+      @media only screen and (min-width: 1025px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .img-box {
+        position: relative;
+        width: 50%;
+        height: 50%;
+        min-width: 50%;
+        min-height: 50%;
+        margin: 50px auto 0;
+        @media only screen and (min-width: 1025px) {
+          position: relative;
+          width: 35%;
+          height: 35%;
+          min-width: 35%;
+          min-height: 35%;
+          margin: 50px 0;
+        }
+    
+        &::before {
+          content: "";
+          display: block;
+          padding-top: 100%;
+        }
+    
+        img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          margin: auto;
+          object-fit: cover;
+          border: 1px solid #2c3e50;
+          border-radius: 50%;
+        }
+      }
+  
+      .profile-block {
+        margin-top: 50px;
+        @media only screen and (min-width: 1025px) {
+          width: 55%;
+        }
+  
+  
+        .form-input {
+          display: flex;
+          flex-direction: column;
+          margin-top: 30px;
+          @media only screen and (min-width: 1025px) {
+            margin-top: 10px;
+          }
+
+          label {
+            width: 100%;
+          }
+  
+          .required,
+          .free {
+            background: #ff0000;
+            padding: 0 5px;
+            border-radius: 3px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            margin: 0 10px 0 0;
+            display: inline-block;
+          }
+  
+          .free {
+            background: #00bfff;
+          }
+  
+          input {
+            margin-top: 10px;
+            padding: 5px 6px;
+            font-size: 16px;
+            border: 1px solid #696969;
+            border-radius: 3px;
+  
+            &:focus {
+              background: #f5deb3;
+            }
+          }
+        }
+      }
+    }
+  
+    .adress-block {
+      display: flex;
+      flex-direction: column;
+      @media only screen and (min-width: 1025px) {
+        justify-content: space-between;
+        margin: 30px 0 0;
+      }
+  
+      .form-input {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        width: 100%;
+        @media only screen and (min-width: 1025px) {
+          width: 30%;
+          margin-top: 10px;
+        }
+  
+        .free {
+          background: #00bfff;
+          padding: 0 5px;
+          border-radius: 3px;
+          font-size: 1rem;
+          font-weight: bold;
+          color: #fff;
+          margin: 0 10px 0 0;
+          display: inline-block;
+        }
+  
+        select {
+          margin-top: 10px;
+          padding: 4px 0;
+          border: 1px solid #696969;
+          border-radius: 3px;
+        }
+  
+        input {
+          margin-top: 10px;
+          padding: 5px 6px;
+          font-size: 16px;
+          border: 1px solid #696969;
+          border-radius: 3px;
+  
+          &:focus {
+            background: #f5deb3;
+          }
+        }
+      }
+    }
+  }
+  
+  .bank-input-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    @media only screen and (min-width: 1025px) {
+      justify-content: space-between;
+      margin: 30px 7.5%;
+    }
+
+    & > div + div {
+      margin-top: 30px;
+    }
+  
+    .form-input {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      @media only screen and (min-width: 1025px) {
+        margin-top: 10px;
+        width: 30%;
+      }
+  
+      .free {
+        background: #00bfff;
+        padding: 0 5px;
+        border-radius: 3px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        margin: 0 10px 0 0;
+        display: inline-block;
+      }
+  
+      input {
+        margin-top: 10px;
+        padding: 5px 6px;
+        font-size: 16px;
+        border: 1px solid #696969;
+        border-radius: 3px;
+  
+        &:focus {
+          background: #f5deb3;
+        }
+      }
+    }
+  }
+}
