@@ -6,7 +6,7 @@
     margin: 50px 0;
   
     @media only screen and (min-width: 1025px)  {
-      margin: 0 7.5%
+      margin: 100px 7.5%
     }
   
     .contact-cast {
@@ -17,7 +17,6 @@
           width: 100%;
           display: flex;
           flex-wrap: wrap;
-          margin: 0;
         }
     
         & > div + div {
@@ -33,7 +32,7 @@
           @media only screen and (min-width: 1025px)  {
             width: calc(30% - 5px);
             margin: 0;
-            margin: 50px calc(10% / 6) 20px;
+            margin: 0 calc(10% / 6) 20px;
             padding: 0;
             border: 1px solid #c0c0c0;
             border-radius: 10px 10px 0 0;
@@ -103,13 +102,19 @@
                 }
     
                 .cast-name {
-                  font-size: 0.9rem;
-                  @media only screen and (min-width: 1025px)  {
-                    font-size: 1.2rem;
+                  margin: 0;
+                  color: #696969;
+                  font-size: 0.8rem;
+                  font-weight: bold;
+                  text-align: left;
+                  border: none;
+                  @media only screen and (min-width: 600px) {
+                    font-size: 1.1rem;
+                  }
+                  @media only screen and (min-width: 1025px) {
+                    font-size: 1rem;
                     margin-bottom: 8px;
-  
-  
-                    
+                    text-align: center;
                   }
                 }
               }
@@ -134,7 +139,12 @@
                   font-size: 0.9rem;
                   color: #808080;
                   margin: 7px 3px 0 0;
+                  @media only screen and (min-width: 600px) {
+                    font-size: 1.2rem;
+                    margin: 0 10px 0 0;
+                  }
                   @media only screen and (min-width: 1025px)  {
+                    font-size: 1rem;
                     margin: 0 8px 0 0;
                   }
                 }

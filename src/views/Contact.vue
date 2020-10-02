@@ -167,7 +167,7 @@ export default {
       if(screenWidth >= 1025 && screenWidth <= 1299) {
         maxLength = 10;
       } else if(screenWidth >= 1300) {
-        maxLength = 13;     
+        maxLength = 11;     
       }
       if(text.length > maxLength) {
         return text.substr(0, maxLength) + '...';

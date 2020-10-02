@@ -136,10 +136,7 @@
 
 .tab {
   display: flex;
-  @media only screen and (min-width: 1025px) {
-    display: flex;
-    margin: 0 7.5%;
-  }
+  margin: 50px 0 0;
   
   div {
     width: 25%;
@@ -166,7 +163,4 @@
 .sns-info {
   padding: 10px;
   border: 1px solid #808080;
-  @media only screen and (min-width: 1025px) {
-    margin: 0 7.5%;
-  }
 }

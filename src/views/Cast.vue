@@ -22,9 +22,6 @@
                     <span :class="{ active: isYouTubeActive }"><i class="fab fa-youtube"></i></span>
                     <span :class="{ active: isTikTokActive }"><i class="fab fa-tiktok"></i></span>
                   </div>
-                  <div class="category">
-                    <p class="cast-category" v-for="(category, index) in log.category" :key="index">{{ category ? category : '未設定' }}</p>
-                  </div>
                   <div v-if="roll === 'admin'" class="inquiry">
                     <p class="email">{{ log.email ? log.email : '未設定' }}</p>
                     <p class="tell">{{ log.tell ? log.tell : '未設定' }}</p>

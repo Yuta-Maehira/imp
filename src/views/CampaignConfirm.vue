@@ -64,7 +64,7 @@
             <p class="campaign-confirm-description">{{ campaignDataObject.campaignDescription }}</p>
           </section>
           
-          <!-- キャンペーン内容 -->
+          <!-- キャンペーンの登録ボタン -->
           <div class="btn" @click="campaignCreate">登録する</div>
         </section>
       </main>

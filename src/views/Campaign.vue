@@ -7,12 +7,9 @@
         <section class="campaign-section">
           <h2>キャンペーン一覧</h2>
 
-          <!--  -->
-          <!--  -->
 
           <!-- 新規キャンペーン作成ボタン(クライアントのみ) -->
           <router-link v-if="roll === 'client'" to="/campaign/create" tag="div" class="btn">新規案件登録</router-link>
-          <!-- ここまで -->
 
           <section class="campaign">
             <paginate class="paginate" name="paginate-log" :list="logs" :per="10">
@@ -26,7 +23,6 @@
                     <img v-if="log.imgurl" :src="log.imgurl" alt="キャンペーンの画像">
                     <img v-else src="../assets/image/no_image.png" alt="キャンペーンの画像">
                   </div>
-                  <!-- ここまで -->
 
                   <!-- キャンペーンの内容 -->
                   <div class="campaign-info">
@@ -42,11 +38,9 @@
                       <p class="campaign-price">{{ log.price }}<span>円</span></p>
                     </div>
                   </div>
-                  <!-- ここまで -->
 
                 </router-link>
               </article>
-              <!-- ここまで -->
               
             </paginate>
           </section>
@@ -143,7 +137,7 @@ export default {
       if(screenWidth >= 1025 && screenWidth <= 1299) {
         maxLength = 10;
       } else if(screenWidth >= 1300) {
-        maxLength = 13;     
+        maxLength = 11;     
       }
       if(text.length > maxLength) {
         return text.substr(0, maxLength) + '...';
@@ -153,14 +147,14 @@ export default {
     descreptionLimit(text) {
       let screenWidth = window.screen.width;
       let maxLength = 20;
-      if(screenWidth >= 400) {
+      if(screenWidth >= 400 && screenWidth <= 599) {
         maxLength = 30;
-      }else if(screenWidth >= 600) {
+      }else if(screenWidth >= 600 && screenWidth <= 1024) {
         maxLength = 25;
       } else if(screenWidth >= 1025 && screenWidth <= 1299) {
         maxLength = 12;
       } else if(screenWidth >= 1300) {
-        maxLength = 18;     
+        maxLength = 15;     
       }
       if(text.length > maxLength) {
         return text.substr(0, maxLength) + '...';
