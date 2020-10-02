@@ -26,51 +26,7 @@ export default new Vuex.Store({
 
     // profileのstate
     profileData: {},
-    // image: {},
-    // client: "",
-    // staff: "",
-    // adress1: "",
-    // adress2: "",
-    // apartment: "",
-    // tell: "",
-    // name: "",
-    // nickName: "",
-    // bank: "",
-    // branch: "",
-    // accountNum: "",
     snsData: {},
-    // myInstagram: {
-    //   accountId: "",
-    //   accountName: "",
-    //   accountType: "",
-    //   followerCount: "",
-    //   goodAverage: "",
-    //   engagement: ""
-    // },
-    // myTwitter: {
-    //   accountId: "",
-    //   accountName: "",
-    //   accountType: "",
-    //   followerCount: "",
-    //   goodAverage: "",
-    //   engagement: ""
-    // },
-    // myYouTube: {
-    //   accountId: "",
-    //   accountName: "",
-    //   accountType: "",
-    //   followerCount: "",
-    //   goodAverage: "",
-    //   engagement: ""
-    // },
-    // myTikTok: {
-    //   accountId: "",
-    //   accountName: "",
-    //   accountType: "",
-    //   followerCount: "",
-    //   goodAverage: "",
-    //   engagement: ""
-    // },
 
     // notificationのstate
     notificationTitle: "",
