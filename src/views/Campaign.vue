@@ -7,6 +7,9 @@
         <section class="campaign-section">
           <h2>キャンペーン一覧</h2>
 
+          <!--  -->
+          <!--  -->
+
           <!-- 新規キャンペーン作成ボタン(クライアントのみ) -->
           <router-link v-if="roll === 'client'" to="/campaign/create" tag="div" class="btn">新規案件登録</router-link>
           <!-- ここまで -->
