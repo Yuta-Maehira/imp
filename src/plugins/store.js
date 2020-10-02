@@ -225,18 +225,6 @@ export default new Vuex.Store({
     },
     myPageBasicDataMove(state, value) {
       state.profileData = value;
-      // state.image = value.image;
-      // state.client = value.client;
-      // state.staff = value.staff;    
-      // state.name = value.name;
-      // state.nickName = value.nickName;
-      // state.adress1 = value.adress1;
-      // state.adress2 = value.adress2;
-      // state.apartment = value.apartment;
-      // state.tell = value.tell;
-      // state.bank = value.bank;
-      // state.branch = value.branch;
-      // state.accountNum = value.accountNum;
       if(state.roll === 'admin' || state.roll === 'client') {
         router.push('/mypage/confirm')
       }
@@ -244,30 +232,6 @@ export default new Vuex.Store({
     
     myPageSnsDataMove(state, value) {
       state.snsData = value;
-      // state.myInstagram.accountId = value.instagramAccountId;
-      // state.myInstagram.accountName = value.instagramAccountName;
-      // state.myInstagram.accountType = value.instagramAccountType;
-      // state.myInstagram.followerCount = value.instagramFollowerCount;
-      // state.myInstagram.goodAverage = value.instagramGoodAverage;
-      // state.myInstagram.engagement = value.instagramEngagement;
-      // state.myTwitter.accountId = value.twitterAccountId;
-      // state.myTwitter.accountName = value.twitterAccountName;
-      // state.myTwitter.accountType = value.twitterAccountType;
-      // state.myTwitter.followerCount = value.twitterFollowerCount;
-      // state.myTwitter.goodAverage = value.twitterGoodAverage;
-      // state.myTwitter.engagement = value.twitterEngagement;
-      // state.myYouTube.accountId = value.youtubeAccountId;
-      // state.myYouTube.accountName = value.youtubeAccountName;
-      // state.myYouTube.accountType = value.youtubeAccountType;
-      // state.myYouTube.followerCount = value.youtubeFollowerCount;
-      // state.myYouTube.goodAverage = value.youtubeGoodAverage;
-      // state.myYouTube.engagement = value.youtubeEngagement;
-      // state.myTikTok.accountId = value.tiktokAccountId;
-      // state.myTikTok.accountName = value.tiktokAccountName;
-      // state.myTikTok.accountType = value.tiktokAccountType;
-      // state.myTikTok.followerCount = value.tiktokFollowerCount;
-      // state.myTikTok.goodAverage = value.tiktokGoodAverage;
-      // state.myTikTok.engagement = value.tiktokEngagement;
       router.push('/mypage/confirm/1')
     },
 
