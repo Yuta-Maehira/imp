@@ -243,6 +243,7 @@ export default new Vuex.Store({
           localStorage.setItem('uid',uid)
           localStorage.setItem('email',authData.email)
           localStorage.setItem('password',authData.password)
+          localStorage.setItem('roll',authData.roll)
           commit('createAccountUpdateIdToken', {
             email: authData.email,
             password: authData.password,
