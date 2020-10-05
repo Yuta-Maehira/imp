@@ -164,7 +164,6 @@ export default new Vuex.Store({
       state.tiktok = value.tiktok;
       state.price = value.price;
       state.campaignImg = value.img;
-      // router.push('/campaign/confirm');
       if(state.roll === "admin") {
         router.push('/campaign/confirm');
       } else if(state.roll === "client") {

@@ -26,13 +26,13 @@
                   </div>
 
                   <!-- 会社名入力フォーム -->
-                  <div v-if="roll === 'admin' && roll === 'client'" class="form-input">
+                  <div v-if="roll === 'admin' || roll === 'client'" class="form-input">
                     <label for="client"><span class="required">必須</span>会社名</label>
                     <input type="text" id="client" name="client" v-model.trim="profileData.client" required>
                   </div>
 
                   <!-- 担当者名入力フォーム -->
-                  <div v-if="roll === 'admin' && roll === 'client'" class="form-input">
+                  <div v-if="roll === 'admin' || roll === 'client'" class="form-input">
                     <label for="staff"><span class="required">必須</span>担当者名</label>
                     <input type="text" id="staff" name="staff" v-model.trim="profileData.staff" required>
                   </div>
