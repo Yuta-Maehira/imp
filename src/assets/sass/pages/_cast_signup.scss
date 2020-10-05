@@ -1,6 +1,8 @@
 .cast-signup-box {
   position: relative;
   height: 100vh;
+  margin: 0;
+  padding: 0;
   background-image: url('../image/login_image.jpg');
   background-position: center center;
   background-repeat: no-repeat;
@@ -59,7 +61,7 @@
     }
 
     .input-title-h2 {
-      margin: 10px 0px;
+      margin: 10px 0;
       padding: 10px 0;
 
       h2 {
@@ -80,6 +82,10 @@
 
         label {
           text-align: left;
+
+          &.check-label {
+            text-align: center;
+          }
 
           .required {
             background: #ff0000;

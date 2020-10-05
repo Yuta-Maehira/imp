@@ -39,6 +39,11 @@ export default {
     TransactionData,
     CampaignLimit,
     CastLimit
+  },
+  data() {
+    return {
+      roll: localStorage.roll
+    }
   }
 }
 </script>

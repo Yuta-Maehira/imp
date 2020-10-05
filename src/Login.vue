@@ -1,8 +1,10 @@
 <template>
   <div class="login-box">
+
     <div class="login-img">
       <img src="./assets/image/login_image.jpg" alt="ログイン画面の画像">
     </div>
+    
     <div class="login-form">
       <div class="site-logo">
         <img src="./assets/image/site_logo.jpg" alt="サイトのロゴ画像">

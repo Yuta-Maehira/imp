@@ -1,5 +1,5 @@
 <template>
-  <section class="cast-signup-box">
+  <div class="cast-signup-box">
 
     <!-- アカウント作成ページのイメージ画像 -->
     <div class="cast-signup-img">
@@ -8,9 +8,14 @@
 
     <!-- アカウント作成情報入力フォーム -->
     <div class="cast-signup-input-form">
-      <img src="@/assets/image/site_logo.jpg" alt="サイトのロゴ画像">
-      <section class="cast-input-section">
+
+      <div class="site-logo">
+        <img src="@/assets/image/site_logo.jpg" alt="サイトのロゴ画像">
+      </div>
+
+      <div class="input-title-h2">
         <h2>アカウント情報の登録</h2>
+      </div>
 
         <form class="cast-input-form" name="signupform">
 
@@ -36,11 +41,10 @@
         </form>
 
         <!-- アカウント作成ボタン -->
-        <div class="btn" @click="clientCreateAccount">登録</div>
-      </section>
+        <div class="btn" @click="castCreateAccount">登録</div>
     </div>
 
-  </section>
+  </div>
 </template>
 
 <script>

@@ -75,7 +75,7 @@ export default new Vuex.Store({
                 specialEditDate: null,
                 campaignEditDate: null
               }).then(() => {
-                router.push('/client/dashboard');
+                router.push('/dashboard');
               })
             } else if(value.roll === 'cast') {
               accountDb.doc(state.email).set({
@@ -131,7 +131,7 @@ export default new Vuex.Store({
                 },
               })
               .then(() => {
-                router.push('/cast/dashboard');
+                router.push('/dashboard');
               })
             }
           })
