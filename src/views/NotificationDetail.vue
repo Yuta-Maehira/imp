@@ -6,7 +6,10 @@
       <main>
         <section class="notification-detail-section">
           <h2>通知内容詳細</h2>
+
           <div class="notification-detail">
+
+            <!-- 通知内容 -->
             <table class="notification-detail-table">
               <tbody>
                 <tr>
@@ -27,7 +30,9 @@
                 </tr>
               </tbody>
             </table>
+
           </div>
+
         </section>
       </main>
     </div>
@@ -56,7 +61,7 @@ export default {
     this.notificationId = this.$route.params['id']
     const notificationDb = firebase.firestore().collection('notifications')
 
-    // 選択した通知データを取得し、lookedをtrueに変更
+    // (2) 選択した通知データを取得
     const changeLooked = async () => {
       const selectNotification = await notificationDb.where('notificationId', '==', this.notificationId).get();
       const doc = selectNotification.docs[0].id;
@@ -66,7 +71,13 @@ export default {
         notificationDb.doc(doc).update({status: 'looked'})
       }
     }
-    changeLooked()
+
+    // (1) 全ての関数を実行
+    const allFunction = async () => {
+      await changeLooked();
+    }
+
+    allFunction()
   }
 }
 </script>

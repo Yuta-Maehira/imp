@@ -7,10 +7,14 @@
         <section class="dashboard-section">
           <h2>ダッシュボード</h2>
           <TransactionData/>
+
+          <!-- 新着クライアントリスト -->
           <div v-if="roll !== 'client'">
             <CampaignLimit/>
             <router-link to='/campaign' tag="div" class="btn">全件表示</router-link>
           </div>
+
+          <!-- 新着キャストリスト -->
           <div v-if="roll !== 'cast'">
             <CastLimit/>
             <router-link to='/cast' tag="div" class="btn">全件表示</router-link>

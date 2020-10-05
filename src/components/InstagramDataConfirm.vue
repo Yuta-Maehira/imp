@@ -1,5 +1,7 @@
 <template>
   <div class="sns-data">
+
+    <!-- Instagramアカウント情報確認 -->
     <div class="sns-box">
       <div>
         <div class="title instagram">アカウントID</div>
@@ -10,6 +12,7 @@
         <div class="value">{{ followerCount ? followerCount : '-' }}</div>
       </div>
     </div>
+
     <div class="sns-box">
       <div>
         <div class="title instagram">アカウント名</div>
@@ -20,6 +23,7 @@
         <div class="value">{{ goodAverage ? goodAverage : '-' }}</div>
       </div>
     </div>
+
     <div class="sns-box">
       <div>
         <div class="title instagram">アカウントジャンル</div>
@@ -30,6 +34,7 @@
         <div class="value">{{ engagement ? engagement : '-' }}</div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -52,6 +57,8 @@ export default {
     }
   },
   created() {
+
+    // アカウント情報表示欄にローカルストレージの内容を表示
     this.accountId = localStorage.instagramId;
     this.accountName = localStorage.instagramName;
     this.accountType = localStorage.instagramType;

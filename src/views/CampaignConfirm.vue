@@ -96,6 +96,8 @@ export default {
     },
   },
   created() {
+
+    // 作成画面でアップロードした画像データからURLを取得
     const events = this.campaignDataObject.campaignImg;
     events.forEach(event => {
       const reader = new FileReader();
@@ -108,22 +110,24 @@ export default {
   methods: {
     campaignCreate() {
 
-      // 画像をfirestoreのstorageに保存する処理
-      if(this.campaignDataObject.campaignImg.length !== 0) {
-        const uid = firebase.auth().currentUser.uid;
-        const events = this.campaignDataObject.campaignImg;
-        events.forEach(event => {
-          const uploadFile = event.target.files[0];
-          const storepath = 'campaignimages/' + uid + '/' + uploadFile.name;
-          const storageRef = firebase.storage().ref().child(storepath);
-          this.imgPath.push(storepath);
-          storageRef.put(uploadFile);
-        })
+      // (2) 画像をfirestoreのstorageに保存する処理
+      const saveImage = async () => {
+        if(this.campaignDataObject.campaignImg.length !== 0) {
+          const uid = firebase.auth().currentUser.uid;
+          const events = this.campaignDataObject.campaignImg;
+          events.forEach(event => {
+            const uploadFile = event.target.files[0];
+            const storepath = 'campaignimages/' + uid + '/' + uploadFile.name;
+            const storageRef = firebase.storage().ref().child(storepath);
+            this.imgPath.push(storepath);
+            storageRef.put(uploadFile);
+          })
+        }
       }
       
       const campaignDb = firebase.firestore().collection('campaigns')
 
-      // (2) キャンペーンにユニークなidをつける処理
+      // (3) キャンペーンにユニークなidをつける処理
       const getUniqueNumber = async () => {
         await campaignDb.orderBy("date", "desc").limit(1).get()
         .then(response => {
@@ -135,7 +139,7 @@ export default {
         })
       }
 
-      // (3) キャンペーンをfirestoreに保存する処理
+      // (4) キャンペーンをfirestore(データベース)に保存する処理
       const addData = () => {
         campaignDb.add({
           campaignid: String(this.campaignDataObject.campaignid),
@@ -161,8 +165,9 @@ export default {
       
       // (1) 全ての関数を実行
       const allFunction = async () => {
-        await getUniqueNumber()
-        await addData()
+        await saveImage();
+        await getUniqueNumber();
+        await addData();
       }
 
       allFunction()

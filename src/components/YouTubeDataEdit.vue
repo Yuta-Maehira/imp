@@ -1,6 +1,9 @@
 <template>
   <div class="sns-edit">
+
     <form class="sns-edit-form">
+
+      <!-- YouTubeアカウント情報編集フォーム -->
       <div class="sns-edit-box">
         <div class="form-input">
           <label for="id" class="youtube">アカウントID</label>
@@ -48,6 +51,8 @@ export default {
     }
   },
   created() {
+
+    // ローカルストレージの内容をデータに保存
     this.accountId = localStorage.youtubeId
     this.accountName = localStorage.youtubeName
     this.accountType = localStorage.youtubeType
@@ -56,6 +61,8 @@ export default {
     this.engagement = localStorage.youtubeEngage
   },
   watch:{
+
+    // 各snsフォームの入力チェック
     accountId(newAccountId) {
       localStorage.youtubeId = newAccountId;
     },
@@ -76,6 +83,8 @@ export default {
     },
   },
   methods: {
+    
+    // sns情報内容をstoreのstateに保存(親コンポーネントから発火)
     profileConfirm() {
       this.$store.commit('myPageSnsDataMove', {
         instagramAccountId: localStorage.instagramAccountId,

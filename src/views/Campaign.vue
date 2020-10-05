@@ -7,7 +7,6 @@
         <section class="campaign-section">
           <h2>キャンペーン一覧</h2>
 
-
           <!-- 新規キャンペーン作成ボタン(クライアントのみ) -->
           <router-link v-if="roll === 'client'" to="/campaign/create" tag="div" class="btn">新規案件登録</router-link>
 
@@ -30,10 +29,18 @@
                     <p class="campaign-description">{{ descreptionLimit(log.description) }}</p>
                     <div class="campaign-under-box">
                       <div class="sns-icon">
-                        <span :class="{ active: log.instagram }"><i class="fab fa-instagram"></i></span>
-                        <span :class="{ active: log.twitter }"><i class="fab fa-twitter active"></i></span>
-                        <span :class="{ active: log.youtube }"><i class="fab fa-youtube"></i></span>
-                        <span :class="{ active: log.tiktok }"><i class="fab fa-tiktok"></i></span>
+                        <span :class="{ active: log.instagram }">
+                          <i class="fab fa-instagram"></i>
+                        </span>
+                        <span :class="{ active: log.twitter }">
+                          <i class="fab fa-twitter active"></i>
+                        </span>
+                        <span :class="{ active: log.youtube }">
+                          <i class="fab fa-youtube"></i>
+                        </span>
+                        <span :class="{ active: log.tiktok }">
+                          <i class="fab fa-tiktok"></i>
+                        </span>
                       </div>
                       <p class="campaign-price">{{ log.price }}<span>円</span></p>
                     </div>
@@ -45,6 +52,7 @@
             </paginate>
           </section>
 
+          <!-- ページネーション -->
           <paginate-links for="paginate-log" :limit="10" :classes="{
               'ul': 'pagination',
               'li': 'pagination-list',
@@ -77,7 +85,7 @@ export default {
     const uid = firebase.auth().currentUser.uid
     const campaignDb = firebase.firestore().collection('campaigns')
 
-    // (2) 全てのキャンペーンを取得して、データのみ配列に格納する処理
+    // (2) 全てのキャンペーンデータを取得
     const getCampaigns = async () => {
       const campaignArray = [];
       const campaigns = await campaignDb.get();
@@ -87,7 +95,7 @@ export default {
       return campaignArray;
     }
 
-    // (3) imgpathがあればimgurlを取得し、なければそのまま格納する処理
+    // (3) 画像のパスがあればURLを取得
     const pushLogs = async (campaignArray) => {
       const campaignImgArray = [];
       for (let i = 0; i < campaignArray.length; i++) {
@@ -110,7 +118,7 @@ export default {
       return campaignImgArray;
     }
 
-    // (4) logsのデータを降順にソートする処理
+    // (4) logsのデータを降順にソート
     const campaignSort = (array) => {
       array.sort((to, from) => {
         if (to.date > from.date) return -1;
@@ -131,6 +139,8 @@ export default {
 
   },
   methods: {
+
+    // タイトルの文字数制限
     titleLimit(text) {
       let screenWidth = window.screen.width;
       let maxLength = 18;
@@ -144,6 +154,8 @@ export default {
       }
       return text;
     },
+
+    // 内容の文字数制限
     descreptionLimit(text) {
       let screenWidth = window.screen.width;
       let maxLength = 20;

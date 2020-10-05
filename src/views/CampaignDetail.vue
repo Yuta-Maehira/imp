@@ -99,6 +99,8 @@
                 </tbody>
               </table>
             </paginate>
+
+            <!-- ページネーション -->
             <paginate-links 
               for="paginate-log" 
               :limit="9"
@@ -148,7 +150,7 @@ export default {
     let campaign = {};
     let campaignDoc = '';
 
-    // (2) キャンペーンデータを取得しデータとドキュメント名を変数に格納する処理
+    // (2) 選択したキャンペーンデータを取得
     const getCampaigns = async () => {
       const selectCampaign = await campaignDb.where('campaignid', '==', this.campaignId).get();
       campaign = selectCampaign.docs[0].data();
@@ -156,14 +158,14 @@ export default {
       dataPush(campaign);
     }
 
-    // (3) rollがcastの際に応募ボタンを表示させる処理
+    // (3) rollがcastの際に応募ボタンを表示
     const applyBtn = async () => {
       const uid = firebase.auth().currentUser.uid;
       const myApply = await campaignDb.doc(campaignDoc).collection('applys').doc(uid).get();
       if(myApply.exists) this.isApplied = false;
     }
 
-    // (4) rollがclientの際に応募者一覧を表示させる処理
+    // (4) rollがclientの際に応募者一覧を表示
     const applysList = async () => {
       const applys = await campaignDb.doc(campaignDoc).collection('applys').get();
       for(let i = 0; i < applys.size; i++) {
@@ -179,9 +181,9 @@ export default {
       }
     }
 
-    // imgpathがあればimgurlを取得し、なければそのまま格納する処理
+    // 画像のパスがあればURLを取得
     const dataPush = async (data) => {
-      if(Array.isArray(data.imgpath)) { // キャンペーンデータ
+      if(Array.isArray(data.imgpath)) { // キャンペーンデータの場合の処理
         if(data.imgpath.length !== 0) {
           const imgpath = data.imgpath;
           let url = [];
@@ -195,7 +197,7 @@ export default {
         } else {
           this.campaignData = data;
         }
-      } else { // 応募者データ
+      } else { // 応募者データの場合の処理
         if(data.imgpath !== '') {
           const imgpath = data.imgpath;
           const imgurl = await firebase.storage().ref().child(imgpath).getDownloadURL();
@@ -218,6 +220,8 @@ export default {
 
   },
   methods: {
+
+    // キャンペーンへの応募の確認とデータベースの内容の変更
     applyCampaign() {
       const uid = firebase.auth().currentUser.uid
       const campaignDb = firebase.firestore().collection('campaigns')
@@ -239,6 +243,8 @@ export default {
         })
       }
     },
+
+    // キャストへの依頼確認とデータベースの内容の変更
     clientOffer(uid, index) {
       const campaignDb = firebase.firestore().collection('campaigns')
       if(confirm('依頼してもいいですか？')) {

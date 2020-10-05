@@ -2,6 +2,8 @@
   <div>
     <div v-if="roll === 'admin' || roll === 'client'">
       <h3>クライアントデータ</h3>
+
+      <!-- 取引の各件数 -->
       <ul class="transaction-data">
         <li>
           <div class="title">案件登録数</div>
@@ -25,6 +27,7 @@
       </div>
     </div>
 
+    <!-- キャストの各アクション件数 -->
     <div v-if="roll === 'admin' || roll === 'cast'">
       <h3>キャストデータ</h3>
       <ul class="transaction-data">
@@ -74,7 +77,7 @@ export default {
     const month = now.getMonth() + 1
     const campaignDb = firebase.firestore().collection('campaigns')
 
-    // (2)
+    // (2) 全てのキャンペーンを取得
     const getCampaign = async () => {
       const campaignsArray = [];
       const campaigns = await campaignDb.get();
@@ -84,7 +87,7 @@ export default {
       return campaignsArray;
     }
 
-    // (3)
+    // (3) キャンペーン作成日時を取得してカウント
     const checkMonth = (campaignsArray) => {
       for(let i = 0; i < campaignsArray.length; i++) {
         const campaignCreateDate = campaignsArray[i].date.toDate()
@@ -99,7 +102,7 @@ export default {
       }
     }
 
-    // (4)
+    // (4) 取引中のキャンペーンからデータとドキュメント名を取得
     const getTransactionCampaign = async () => {
       const transactionCampaignArray = [];
       const transactionCampaign = await campaignDb.where('contact', '==', true).get();
@@ -112,14 +115,14 @@ export default {
       return transactionCampaignArray;
     }
 
-    // (5)
+    // (5) <管理者> 各取引データをカウント
     const getTransaction = (transactionCampaignArray) => {
       for(let i = 0; i < transactionCampaignArray.length; i++) {
         const data = transactionCampaignArray[i].data;
         const doc = transactionCampaignArray[i].doc;
         if(this.roll === 'admin') {
 
-          // (5-2)
+          // (5-2) 取引中のキャンペーンの応募者を取得
           const getApplys = async () => {
             const applyArray = [];
             const applys = await campaignDb.doc(doc).collection('applys').get();
@@ -129,10 +132,9 @@ export default {
             return applyArray;
           }
 
-          // (5-3)
+          // (5-3) 取引人数と取引案件数をカウント
           const getAdminTransactionData = (applyArray) => {
             let num = 0;
-            console.log('ok')
             for(let i = 0; i < applyArray.length; i++) {
               const applyData = applyArray[i];
               if(applyData.status) {
@@ -144,7 +146,6 @@ export default {
                   this.castCompleteNum += 1; 
                 }
               } else if(!applyData.status) {
-                console.log('ok')
                 this.applyNum += 1;
               }
             }
@@ -154,7 +155,7 @@ export default {
             }
           }
 
-          // (5-4)
+          // (5-4) 取引中のキャンペーンから取引完了者を取得
           const getCompleteCampaign = async () => {
             const completeCampaignArray = [];
             const completeCampaigns = await campaignDb.where('complete', '==', true).get();
@@ -164,7 +165,7 @@ export default {
             return completeCampaignArray;
           }
 
-          // (5-5)
+          // (5-5) 取引完了者から当月完了した者をカウント
           const adminCheckMonth = (completeCampaignArray) => {
             for(let i = 0; i < completeCampaignArray.length; i++) {
               const campaignCompleteDate = completeCampaignArray[i].data().completeDate.toDate()
@@ -175,7 +176,7 @@ export default {
             }
           }
 
-          // (5-1)
+          // (5-1) 全ての関数を実行
           const adminAllFunction = async () => {
             const applyArray = await getApplys()
             await getAdminTransactionData(applyArray)
@@ -188,7 +189,7 @@ export default {
         } else if(this.roll === 'client') {
           if(data.uid === uid) {
 
-            // (5-7)
+            // (5-7) キャンペーンの応募者から取引中の者を取得
             const getCompleteApplys = async () => {
               const completeApplysArray = [];
               const completeApplys = await campaignDb.doc(doc).collection('applys').where('status', '==', true).get();
@@ -198,7 +199,7 @@ export default {
               return completeApplysArray;
             }
 
-            // (5-8)
+            // (5-8) 取引人数と取引案件数をカウント/取引完了者から当月完了した者をカウント
             const getClientTransactionData = async (completeApplysArray) => {
               if(!data.complete && completeApplysArray.length > 0) {
                 this.clientTransactionNum += 1; // 取引案件数
@@ -217,7 +218,7 @@ export default {
               }
             }
 
-            // (5-6)
+            // (5-6) 全ての関数を実行
             const clientAllFunction = async () => {
               const completeApplysArray = await getCompleteApplys()
               await getClientTransactionData(completeApplysArray)
@@ -229,6 +230,8 @@ export default {
         } else if(this.roll === 'cast') {
           
           // (5-9)
+
+          // キャンペーンから自分の応募したキャンペーンを取得
           const getMyApply = async () => {
             const myApply = await campaignDb.doc(doc).collection('applys').doc(uid).get();
             if(myApply.exists) {
@@ -236,14 +239,17 @@ export default {
               const campaignApplyDate = applyData.applyDate.toDate()
               const campaignApplyMonth = campaignApplyDate.getMonth() + 1
               
+              // 応募数をカウント
               if(!applyData.status && !applyData.complete) {
                 if(campaignApplyMonth === month) {
                   this.applyNum += 1
                 }
 
+              // 取引件数をカウント
               } else if(applyData.status && !applyData.complete) {
                 this.castTransactionNum += 1;
 
+              // 報酬金額をカウント
               } else if(applyData.status && applyData.complete) {
                 const campaignCompleteDate = applyData.completeTime.toDate()
                 const campaignCompleteMonth = campaignCompleteDate.getMonth() + 1
@@ -255,6 +261,7 @@ export default {
             }
           }
 
+          // 関数の実行
           getMyApply()
         }
       }

@@ -15,6 +15,7 @@
               <img v-else src="@/assets/image/no_image.png" alt="キャストの画像">
             </div>
 
+            <!-- キャスト情報 -->
             <section class="cast-basic-data-section">
               <h3>基本データ</h3>
               <table>
@@ -66,11 +67,13 @@
 
           </section>
 
+          <!-- 自己PR -->
           <section class="pr-data">
             <div class="pr-title">自己PR</div>
             <div class="pr-value">{{ castData[0].pr ? castData[0].pr : '設定されていません' }}</div>
           </section>
 
+          <!-- sns情報 -->
           <section id="scroll-inner">
             <div class="tab">
               <div :class="{active : isInstagram}" @click="addActive('Instagram')">Instagram</div>
@@ -115,7 +118,7 @@ export default {
     this.accountId = this.$route.params['id'];
     const accountDb = firebase.firestore().collection('account');
 
-    // (2) 選択したキャストのアカウントデータを取得し、変数に格納する処理
+    // (2) 選択したキャストデータを取得
     const getCast = async () => {
       const castDataArray = [];
       const selectCast = await accountDb.where('accountId', '==', this.accountId).get();
@@ -125,7 +128,7 @@ export default {
       return castDataArray;
     }
 
-    // (3) imgpathがあればimgurlを取得し、なければそのまま格納する処理
+    // (3) 画像のパスがあればURLを取得
     const pushData = async (castDataArray) => {
       for(let i = 0; i < castDataArray.length; i++) {
         if(castDataArray[i].imgpath !== '') {
@@ -149,6 +152,8 @@ export default {
 
   },
   methods: {
+
+    // snsタブの切り替えでページの切り替え
     addActive(sns) {
       if(sns === 'Instagram') {
         this.isTwitter = false;

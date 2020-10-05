@@ -6,9 +6,14 @@
       <main>
         <section class="notification-section">
           <h2>通知一覧</h2>
+
+          <!-- 新規通知作成ボタン -->
           <router-link v-if="roll === 'admin'" to="/notification/create" tag="div" class="btn">新規通知作成</router-link>
+
           <div class="notification">
             <paginate class="paginate" name="paginate-log" :list="logs" :per="10" tag="div">
+
+              <!-- 各通知のブロック(ループ処理) -->
               <article :class="['notification-box', log.status]" v-for="(log, index) in paginated('paginate-log')" :key="index">
                 <router-link :to="'/notification/detail/' + log.notificationId" tag="div" class="notification-link-box">
                   <div class="notification-info">
@@ -24,8 +29,11 @@
                   </div>
                 </router-link>
               </article>
+
             </paginate>
           </div>
+
+          <!-- ページネーション -->
           <paginate-links 
             for="paginate-log" 
             :limit="3"
@@ -66,7 +74,7 @@ export default {
     const accountDb = firebase.firestore().collection('account')
     const notificationDb = firebase.firestore().collection('notifications')
 
-    // (2) 自分のアカウントデータを取得し、変数に格納する処理
+    // (2) 自分のアカウントデータを取得
     const getMyAccountData = async () => {
       const myAccount = await accountDb.where('userId', '==', uid ).get();
       const myAccountDate = myAccount.docs[0].data().createData;

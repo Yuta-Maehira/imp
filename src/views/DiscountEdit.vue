@@ -6,11 +6,14 @@
       <main>
         <section class="discount-edit">
           <h2>割引設定</h2>
+
+          <!-- 割引選択ブロック -->
           <div class="select-discount-type">
             <label for="special"><input type="radio" name="type" id="special" value="special" v-model="type"  checked="checked">特別割引</label>
             <label for="campaign"><input type="radio" name="type" id="campaign" value="campaign" v-model="type">キャンペーン割引</label>
           </div>
 
+          <!-- 特別割引ブロック -->
           <section :class="[{'opacity': type !== 'special'}, 'discount-edit']">
             <h3>特別割引設定</h3>
             <table class="discount-edit-table">
@@ -41,6 +44,7 @@
             </table>
           </section>
 
+          <!-- キャンペーン割引ブロック -->
           <section :class="[{'opacity': type !== 'campaign'}, 'discount-edit']">
             <h3>キャンペーン割引設定</h3>
             <table class="discount-edit-table">
@@ -71,8 +75,10 @@
             </table>
           </section>
 
+          <!-- 設定変更ボタン -->
           <div class="btn" @click="changeDiscount">設定変更</div>
 
+          <!-- 割引設定済クライアントリスト -->
           <section class="discount-client-list">
             <h3>割引設定済クライアント</h3>
             <table>
@@ -138,23 +144,19 @@ export default {
   created() {
     const accountDb = firebase.firestore().collection('account')
   
+    // (2) 全てのクライアント名・データを取得
     const getAccount = async () => {
+      const clientsData = [];
       const clients = await accountDb.where('roll', '==', 'client').get();
       clients.forEach(client => {
         const data = client.data();
         this.clients.push(data.client)
-      })
-    }
-
-    const getDiscountAccount = async () => {
-      const clientsData = [];
-      const clients = await accountDb.where('roll', '==', 'client').get();
-      clients.forEach(client => {
-        clientsData.push(client.data());
+        clientsData.push(data);
       })
       return clientsData;
     }
 
+    // (3) 割引設定済クライアントを取得
     const squeezeData = (clientsData) => {
       clientsData.forEach(data => {
         const specialData = data.specialPercent;
@@ -165,18 +167,21 @@ export default {
       })
     }
 
+    // (1) 全ての関数を実行
     const allFunction = async () => {
-      await getAccount()
-      const clientsData = await getDiscountAccount()
+      const clientsData = await getAccount()
       squeezeData(clientsData)
     }
 
     allFunction()
   },
   methods: {
+
+    // 割引％をデータベースに保存
     changeDiscount() {
       const accountDb = firebase.firestore().collection('account');
 
+      // 特別割引の場合
       if(this.type === 'special') {
         if(this.specialClient !== '未選択') {
           accountDb.where('client', '==', this.specialClient).get().then(response => {
@@ -197,6 +202,8 @@ export default {
         } else {
           alert('クライアントを選択してください')
         }
+
+      // キャンペーン割引の場合
       } else if(this.type === 'campaign') {
         if(this.campaignPercent !== '未選択') {
           accountDb.where('client', '==', this.campaignClient).get().then(response => {
@@ -219,6 +226,9 @@ export default {
         }
       }
     },
+
+
+    // 特別割引データの削除の場合
     specialReset(doc, index) {
       const accountDb = firebase.firestore().collection('account');
       if(confirm('割引データを削除してもいいですか？')) {
@@ -228,6 +238,8 @@ export default {
         })
       }
     },
+
+    // キャンペーン割引データの削除の場合
     campaignReset(doc, index) {
       const accountDb = firebase.firestore().collection('account');
       if(confirm('割引データを削除してもいいですか？')) {
@@ -237,6 +249,8 @@ export default {
         })
       }
     },
+
+    // 割引データ削除後に表示データをリロード
     reloadDiscountClient() {
       const accountDb = firebase.firestore().collection('account');
 

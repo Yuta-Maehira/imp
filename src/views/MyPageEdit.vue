@@ -11,42 +11,51 @@
 
               <div class="basic-data">
 
+                <!-- プロフィール画像 -->
                 <div class="img-box">
                   <img v-if="profileData.imgurl" :src="profileData.imgurl">
                   <img v-else src="../assets/image/no_image.png" alt="プロフィール画像">
                 </div>
 
                 <div class="profile-block">
+
+                  <!-- プロフィール画像フォーム -->
                   <div class="form-input">
                     <label for="image"><span class="required">必須</span>プロフィール画像</label>
                     <input type="file" id="image" name="image" @change="attachImage" required>
                   </div>
 
+                  <!-- 会社名入力フォーム -->
                   <div v-if="roll === 'admin' && roll === 'client'" class="form-input">
                     <label for="client"><span class="required">必須</span>会社名</label>
                     <input type="text" id="client" name="client" v-model.trim="profileData.client" required>
                   </div>
 
+                  <!-- 担当者名入力フォーム -->
                   <div v-if="roll === 'admin' && roll === 'client'" class="form-input">
                     <label for="staff"><span class="required">必須</span>担当者名</label>
                     <input type="text" id="staff" name="staff" v-model.trim="profileData.staff" required>
                   </div>
 
+                  <!-- キャスト名入力フォーム -->
                   <div v-if="roll === 'cast'" class="form-input">
                     <label for="client"><span class="required">必須</span>名前</label>
                     <input type="text" id="client" name="client" v-model.trim="profileData.name" required>
                   </div>
 
+                  <!-- キャストニックネーム入力フォーム -->
                   <div v-if="roll === 'cast'" class="form-input">
                     <label for="staff"><span class="required">必須</span>ニックネーム</label>
                     <input type="text" id="staff" name="staff" v-model.trim="profileData.nickName" required>
                   </div>
 
+                  <!-- メールアドレス入力フォーム -->
                   <div class="form-input">
                     <label for="email"><span class="required">必須</span>メールアドレス</label>
                     <input type="text" id="email" name="email" :value="profileData.email" required readonly>
                   </div>
 
+                  <!-- 電話番号入力フォーム -->
                   <div class="form-input">
                     <label for="tell"><span class="free">任意</span>電話番号</label>
                     <input type="text" id="tell" name="tell" v-model.trim="profileData.tell" required>
@@ -54,6 +63,7 @@
                 </div>
               </div>
 
+              <!-- 住所入力フォーム -->
               <div class="adress-block">
                 <div class="form-input">
                   <label for="adress1"><span class="free">必須</span>都道府県</label>
@@ -160,14 +170,14 @@ export default {
     const uid = firebase.auth().currentUser.uid
     const accountDb = firebase.firestore().collection('account')
 
-    // (2) 自分のアカウントデータを取得し、imgpathがあればimgurlを取得し、なければそのまま格納する処理
+    // (2) 自分のアカウントデータを取得
     const getMyAccountData = async () => {
       const myAccount = await accountDb.where('userId', '==', uid ).get();
       const myAccountData = myAccount.docs[0].data();
       return myAccountData;
     }
 
-    // (3) imgpathがあればimgurlを取得する処理
+    // (3) 画像のパスがあればURLを取得
     const getImgUrl = async (myAccountData) => {
       if(myAccountData.imgpath !== '') {
         this.profileData.imgpath = myAccountData.imgpath;
@@ -205,6 +215,8 @@ export default {
 
   },
   methods: {
+
+    // アップロードした画像データからURLを取得
     attachImage(e) {
       this.profileData.image = e;
       let reader = new FileReader();
@@ -213,12 +225,16 @@ export default {
       };
       reader.readAsDataURL(this.profileData.image.target.files[0]);
     },
+
+    // 子コンポーネントの実行とコミット
     profileConfirm() {
       if(this.roll === 'cast') {
         this.$refs.profileConfirm.profileConfirm()
       }
       this.$store.commit('myPageBasicDataMove', this.profileData);
     },
+
+    // キャストのsns活動チェック
     addActive(sns) {
       if(sns === 'Instagram') {
         this.isTwitter = false;

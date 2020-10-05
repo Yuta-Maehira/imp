@@ -3,7 +3,10 @@
     <Header/>
     <div class="container">
       <SideBar/>
+
       <div class="select-usage-month"> 
+
+        <!-- 月選択ボタン -->
         <div class="select-month">
           <div class="left-arrow" @click="previousMonth">
             <p>{{ monthAgo }}月</p>
@@ -16,11 +19,13 @@
           </div>
         </div>
 
+        <!-- 選択した月の請求対象期間 -->
         <div class="usage-period">
           <p>利用期間</p>
           <p>{{ usageStartDate }} 〜 {{ usageEndDate }}</p>
         </div>
 
+        <!-- 請求内容表示コンポーネント -->
         <router-view ref="payDetail" :year="yearNow" :month="monthNow"></router-view>
 
       </div>
@@ -50,6 +55,8 @@ export default {
     }
   },
   created() {
+
+    // 選択月を1〜12までの繰り返しにする
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
@@ -69,6 +76,8 @@ export default {
     this.usageEndDate = year + '年' + (this.monthNow - 1) + '月' + '末日';
   },
   methods: {
+
+    // 前の月の請求情報表示(子コンポーネントの関数を実行)
     previousMonth() {
       if(this.monthNow === 1) {
         this.monthNow = 12;
@@ -82,6 +91,8 @@ export default {
       this.usageEndDate = this.yearNow + '年' + (this.monthNow - 1) + '月' + '末日';
       this.$refs.payDetail.reloadFunctions(this.monthNow)
     },
+
+    // 次の月の請求情報表示(子コンポーネントの関数を実行)
     nextMonth() {
       const now = new Date();
       const month = now.getMonth() + 1;

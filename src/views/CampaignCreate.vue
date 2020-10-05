@@ -8,19 +8,19 @@
         <section class="campaign-input">
           <form class="campaign-input-form" name="createcampaign">
             
-            <!-- キャンペーンタイトル入力欄 -->
+            <!-- キャンペーンタイトル入力フォーム -->
             <div class="form-input">
               <label for="title"><span class="required">必須</span>タイトル</label>
               <input type="text" id="title" name="title" placeholder="例: 1日1万個売れた!新コスメのPR案件" v-model.trim="campaignData.campaignTitle" required>
             </div>
 
-            <!-- キャンペーン説明文入力欄 -->
+            <!-- キャンペーン説明文入力フォーム -->
             <div class="form-input">
               <label for="description"><span class="required">必須</span>説明</label>
               <textarea name="description" rows="10" placeholder="※ 案件の説明を記入してください" v-model.trim="campaignData.campaignDescription" required></textarea>
             </div>
 
-            <!-- 希望snsチェック欄 -->
+            <!-- 希望snsチェックフォーム -->
             <div class="sns">
               <div>
                 <input type="checkbox" id="instagram" name="sns" v-model="campaignData.instagram" value="instagram">
@@ -40,19 +40,19 @@
               </div>
             </div>
 
-            <!-- 報酬金額入力欄 -->
+            <!-- 報酬金額入力フォーム -->
             <div class="form-input">
               <label for="price"><span class="required">必須</span>報酬額<small>※数字のみ記入してください</small></label>
               <input type="text" id="price" name="price" placeholder="例: 10000" v-model.trim="campaignData.price" required>
             </div>
             
-            <!-- キャンペーン画像選択欄 -->
+            <!-- キャンペーン画像選択フォーム -->
             <div class="form-input">
               <label for="image"><span class="required">必須</span>キャンペーン画像</label>
               <input type="file" id="image" name="image" @change="attachImage" required>
             </div>
 
-            <!-- キャンペーン画像確認表示 -->
+            <!-- アップロードしたキャンペーン画像確認表示 -->
             <div class="select-img">
               <div class="check-img" v-for="uploadedImage in uploadedImages" :key="uploadedImage">
                 <img v-if="uploadedImage" :src="uploadedImage" alt="キャンペーン確認画像">
@@ -62,7 +62,7 @@
 
           </form>
 
-          <!-- 確認ボタン -->
+          <!-- 未入力の際のメッセージ&確認ボタン -->
           <div class="missed">
             <p>{{ message }}</p>
           </div>
@@ -102,7 +102,7 @@ export default {
   },
   methods: {
 
-    // 画像ファイルが選択されたら表示する処理
+    // アップロードした画像データからURLを取得
     attachImage(e) {
       this.campaignData.img.push(e);
       let reader = new FileReader();

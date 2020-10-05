@@ -1,13 +1,20 @@
 <template>
   <div>
     <h3>新着案件(新規5件)</h3>
+
     <div class="campaign-limit">
+
+      <!-- 最新5件のキャンペーンの各ブロック(ループ処理) -->
       <div class="campaign-box" v-for="campaign in campaigns" :key="campaign.campaignId">
         <router-link :to="'/' + roll + '/campaign/detail/' + campaign.campaignid" tag="div" class="campaign-link-box">
+
+          <!-- キャンペーンの画像 -->
           <div class="img-box">
             <img v-if="campaign.imgurl" :src="campaign.imgurl" alt="キャンペーンの画像">
             <img v-else src="../assets/image/no_image.png" alt="キャンペーンの画像">
           </div>
+
+          <!-- キャンペーンの内容 -->
           <div class="campaign-info">
             <p class="campaign-title">{{ titleLimit(campaign.title) }}</p>
             <p class="campaign-description">{{ descreptionLimit(campaign.description) }}</p>
@@ -21,9 +28,12 @@
               <p class="campaign-price">{{ campaign.price }}<span>円</span></p>
             </div>
           </div>
+
         </router-link>
       </div>
+
     </div>
+
   </div>
 </template>
 
@@ -51,7 +61,7 @@ export default {
       return newCampaignsArray;
     }
 
-    // (3) imgpathがあればimgurlを取得し、なければそのまま格納する処理
+    // (3) 画像のパスがあればURLを取得
     const dataPush = async (newCampaignsArray) => {
       const uid = firebase.auth().currentUser.uid;
       const newCampaignImgArray = [];
@@ -75,7 +85,7 @@ export default {
       return newCampaignImgArray;
     }
 
-    // (4) campaignsのデータを降順にソートする処理
+    // (4) campaignsのデータを降順にソート
     const campaignSort = (newCampaignImgArray) => {
       newCampaignImgArray.sort((to, from) => {
         if(to.date > from.date) return -1;
@@ -96,6 +106,8 @@ export default {
 
   },
   methods: {
+    
+    // タイトルの文字数制限
     titleLimit(text) {
       let screenWidth = window.screen.width;
       let maxLength = 18;
@@ -109,6 +121,8 @@ export default {
       }
       return text;
     },
+
+    // 内容の文字数制限
     descreptionLimit(text) {
       let screenWidth = window.screen.width;
       let maxLength = 20;

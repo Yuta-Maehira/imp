@@ -39,8 +39,10 @@
         </li>
       </ul>
     </nav>
+
+    <!-- ディスプレイ広告掲載 -->
     <div class="promotion">
-      <img src="../assets/image/promotiongif.gif" alt="広告画像">
+      <img src="@/assets/image/promotiongif.gif" alt="広告画像">
     </div>
   </aside>
 </template>

@@ -1,13 +1,20 @@
 <template>
   <div>
     <h3>新規キャスト(新規5名)</h3>
+
     <div class="cast-limit">
+
+      <!-- 新着5人のキャストの各ブロック(ループ処理) -->
       <div class="cast-box" v-for="cast in casts" :key="cast.accountId">
         <router-link :to="'/' + roll + '/cast/detail/' + cast.accountId" tag="div" class="cast-link-box">
+
+          <!-- キャンペーンの画像 -->
           <div class="img-box">
             <img v-if="cast.imgurl" :src="cast.imgurl" alt="キャストの画像">
             <img v-else src="../assets/image/no_image.png" alt="キャストの画像">
           </div>
+
+          <!-- キャンペーンの内容 -->
           <div class="cast-info">
             <div>
               <p class="cast-name">{{ cast.name ? nameLimit(cast.name) : nameLimit('未設定') }}</p>
@@ -23,9 +30,12 @@
               <p class="tell">{{ cast.tell ? cast.tell : '未設定' }}</p>
             </div>
           </div>
+
         </router-link>
       </div>
+
     </div>
+
   </div>
 </template>
 
@@ -57,7 +67,7 @@ export default {
       return castsDataArray;
     }
 
-    // (3) imgpathがあればimgurlを取得し、なければそのまま格納する処理
+    // (3) 画像のパスがあればURLを取得
     const getImgUrl = async (castSortList) => {
       const castImgArray = [];
       const castLimitList =castSortList.slice(0, 5);
@@ -75,7 +85,7 @@ export default {
       return castImgArray;
     }
 
-    // (4) 渡されたデータを降順にソートする処理
+    // (4) 渡されたデータを降順にソート
     const castSort = (cast) => {
       cast.sort((to, from) => {
         if(to.accountId > from.accountId) return -1;
@@ -112,7 +122,7 @@ export default {
         ) this.isTikTokActive = true;
     }
 
-    // (1) 全ての関数を実行し、最終的にcastsにデータを格納
+    // (1) 全ての関数を実行/castsにデータを格納
     const allFunction = async () => {
       const castsDataArray = await getCasts()
       const castSortList = await castSort(castsDataArray)
@@ -125,6 +135,8 @@ export default {
 
   },
   methods: {
+    
+    // 名前の文字数制限
     nameLimit(text) {
       const maxLength = 8;
       if(text.length > maxLength) {

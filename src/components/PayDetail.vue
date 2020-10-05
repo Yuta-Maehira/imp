@@ -1,5 +1,7 @@
 <template>
   <div>
+
+    <!-- 請求合計 -->
     <div class="total">
       <div class="tax"><p>（消費税・手数料込）</p></div>
       <div class="payment-detail">
@@ -16,13 +18,14 @@
       </div>
     </div>
 
+    <!-- 請求詳細 -->
     <div class="detail">
       <div class="detail-title">
         <p>請求内訳</p>
       </div>
       <div class="break-down">
 
-
+        <!-- 基本的な請求内容 -->
         <div>
           <div>小計</div>
           <div>{{ allPayment }}<span class="small-text">円</span></div>
@@ -42,7 +45,7 @@
           </li>
         </ul>
 
-
+        <!-- 割引額 -->
         <div>
           <div>小計</div>
           <div>{{ specialDiscount + campaignDiscount }}<span class="small-text">円</span></div>
@@ -88,7 +91,7 @@ export default {
     const accountDb = firebase.firestore().collection('account');
     const campaignDb = firebase.firestore().collection('campaigns');
 
-    // (2) キャンペーンから自分のデータを取得し、ドキュメント名を取得
+    // (2) キャンペーンから自分のデータを取得
     const getCampaigns = async () => {
       let docs = [];
       const myCampaigns = await campaignDb.where('uid', '==', uid).get();
@@ -98,7 +101,7 @@ export default {
       return docs;
     }
 
-    // (3) 応募者を取得して、取引完了者を取得
+    // (3) 応募者を取得->取引完了者を取得
     const pushApplys = async (docs) => {
       let applys = [];
       for(let i = 0; i < docs.length; i++) {
@@ -110,6 +113,7 @@ export default {
       this.allApplys = applys;
     }
 
+    // (4) 取引完了者で完了年月日が対象の者の単価を取得
     const getPayment = () => {
       this.allApplys.forEach(apply => {
         const campaignCompleteDate = apply.completeTime.toDate();
@@ -121,12 +125,14 @@ export default {
       })
     }
 
+    // (5) 手数料と消費税を合計
     const allPayment = () => {
       this.tax = this.payment * 0.1;
       this.fee = this.payment * 0.3;
       this.allPayment = this.payment + (this.tax + this.fee); 
     }
 
+    // (6) 特別割引の割引期間を指定
     const specialAmount = async () => {
       const myAccount = await accountDb.where('userId', '==', uid).get();
       const myData = myAccount.docs[0].data();
@@ -149,6 +155,7 @@ export default {
       if(editMonthString.length === 1) nowLinkNumber = Number(yearString + nowzero + monthString);
       if(editMonthString.length === 2) nowLinkNumber = Number(yearString + monthString);
 
+      // 割引登録時点以降の請求詳細から割引
       if(editLinkNumber <= nowLinkNumber) {
         if(myData.specialPercent !== '未選択') {
           const special = Number(myData.specialPercent.substr(0, 2));
@@ -158,6 +165,7 @@ export default {
       }
     }
 
+    // (7) キャンペーン割引の割引期間を指定
     const campaignAmount = (myData) => {
 
       // 割引登録日時のDateStringを取得
@@ -178,6 +186,7 @@ export default {
       if(editMonthString.length === 1) nowLinkNumber = Number(yearString + nowzero + monthString);
       if(editMonthString.length === 2) nowLinkNumber = Number(yearString + monthString);
 
+      // 割引登録時点以降の請求詳細から割引
       if(editLinkNumber <= nowLinkNumber) {
         if(myData.campaignPercent !== '未選択') {
           const campaign = Number(myData.campaignPercent.substr(0, 2));
@@ -187,6 +196,7 @@ export default {
       }
     }
 
+    // (1) 全ての関数を実行
     const allFunction = async () => {
       const docs = await getCampaigns()
       await pushApplys(docs)
@@ -199,6 +209,8 @@ export default {
     allFunction()
   },
   methods: {
+
+    // methodsの内容を再度実行
     async reloadFunctions(monthNow) {
       await this.reloadGetPayment(monthNow)
       await this.reloadAllPayment()
@@ -206,6 +218,8 @@ export default {
       await this.reloadCampaignAmount(myData)
 
     },
+
+    // 取引完了者で完了年月日が対象の者の単価を取得
     reloadGetPayment(monthNow) {
       this.payment = 0;
       this.allApplys.forEach(apply => {
@@ -217,11 +231,15 @@ export default {
         }
       })
     },
+
+    // 手数料と消費税を合計
     reloadAllPayment() {
       this.tax = this.payment * 0.1;
       this.fee = this.payment * 0.3;
       this.allPayment = this.payment + (this.tax + this.fee); 
     },
+
+    // 特別割引の割引期間を指定
     async reloadSpecialAmount() {
       const uid = firebase.auth().currentUser.uid;
       const accountDb = firebase.firestore().collection('account');
@@ -234,6 +252,7 @@ export default {
       return myData;
     },
 
+    // キャンペーン割引の割引期間を指定
     reloadCampaignAmount(myData) {
       if(myData.campaignPercent !== '未選択') {
         const campaign = Number(myData.campaignPercent.substr(0, 2));

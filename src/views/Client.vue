@@ -8,12 +8,18 @@
           <h2>クライアント一覧</h2>
         
           <paginate class="paginate" name="paginate-log" :list="logs" :per="10" tag="div">
+
+            <!-- 各クライアントのブロック(ループ処理) -->
             <article class="client-box" v-for="(log, index) in paginated('paginate-log')" :key="index">
               <router-link :to="'/client/detail/' + log.accountId" tag="div" class="client-link-box">
+
+                <!-- クライアントの画像 -->
                 <div class="img-box">
                   <img v-if="log.imgurl" :src="log.imgurl" alt="クライアントの画像">
                   <img v-else src="../assets/image/no_image.png" alt="クライアントの画像">
                 </div>
+
+                <!-- クライアントのプロフィールの内容 -->
                 <div class="client-info">
                   <div class="client-name-info">
                     <h3 class="client-name">{{ log.client ? nameLimit(log.client) : nameLimit('未設定') }}</h3>
@@ -27,10 +33,14 @@
                     <p class="tell">{{ log.tell ? log.tell : '未設定' }}</p>
                   </div>
                 </div>
+
               </router-link>
             </article>
+
           </paginate>
         </section>
+
+        <!-- ページネーション -->
         <paginate-links 
           for="paginate-log" 
           :limit="10"
@@ -66,7 +76,7 @@ export default {
   created() {
     const accountDb = firebase.firestore().collection('account')
 
-    // (2) 全てのクライアントを取得して、データのみ配列に格納する処理
+    // (2) 全てのクライアントを取得
     const getClient = async () => {
       const clientsDataArray = [];
       const clients = await accountDb.where('roll', '==', 'client').get();
@@ -76,7 +86,7 @@ export default {
       return clientsDataArray;
     }
 
-    // (3) imgpathがあればimgurlを取得し、なければそのまま格納する処理
+    // (3) 画像のパスがあればURLを取得
     const pushLogs = async (clientsDataArray) => {
       const clientImgArray = [];
       for(let i = 0; i < clientsDataArray.length; i++) {
@@ -92,7 +102,7 @@ export default {
       return clientImgArray;
     }
 
-    // (4) logsのデータを降順にソートする処理
+    // (4) logsのデータを降順にソート
     const clientSort = (clientImgArray) => {
       clientImgArray.sort((to, from) => {
         if(to.date > from.date) return -1;
@@ -113,6 +123,8 @@ export default {
 
   },
   methods: {
+
+    // 名前の文字数制限
     nameLimit(text) {
       const maxLength = 8;
       if(text.length > maxLength) {

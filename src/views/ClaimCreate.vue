@@ -6,11 +6,16 @@
       <main>
         <section class="claim-create-section">
           <h2>請求書作成</h2>
+
           <div class="claim-create">
+
+            <!-- 注釈 -->
             <section class="notes">
               <h3>※請求書の作成は発行月の翌月に行ってください。</h3>
               <p>同月に発行すると、誤った請求内容での作成となります</p>
             </section>
+
+            <!-- 請求書作成クライアント一覧 -->
             <table class="claim-create-table">
               <tbody>
                 <tr v-for="(account,index) in accounts" :key="index">
@@ -25,6 +30,7 @@
                 </tr>
               </tbody>
             </table>
+
           </div>
         </section>
       </main>
@@ -51,13 +57,13 @@ export default {
     }
   },
   created() {
-    const now = new Date()
-    const year = now.getFullYear()
-    const month = now.getMonth() + 1
-    const accountDb = firebase.firestore().collection('account')
-    const campaignDb = firebase.firestore().collection('campaigns')
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const accountDb = firebase.firestore().collection('account');
+    const campaignDb = firebase.firestore().collection('campaigns');
 
-    // (2) 全てのキャンペーンを取得して、データのみ配列に格納する処理
+    // (2) 全てのキャンペーンデータを取得
     const getCampaigns = async () => {
       const campaignDocs = [];
       const campaigns = await campaignDb.get();
@@ -67,7 +73,7 @@ export default {
       return campaignDocs;
     }
 
-    // 応募者の中から取引が完了している者を取得
+    // (3) 応募者の中から取引が完了している者を取得
     const getTransactionCompleteCast = async (campaignDocs) => {
       const transactionCompleteCastsArray = [];
       for(let i = 0; i < campaignDocs.length; i++) {
@@ -80,12 +86,12 @@ export default {
       return transactionCompleteCastsArray;
     }
 
+    // (4) 取引が完了している応募者の中から完了月が請求書発行月の者を取得
     const checkCompleteDate = (transactionCompleteCastsArray) => {
       const campaignId = [];
       for(let i = 0; i < transactionCompleteCastsArray.length; i++) {
         const campaignCompleteDate = transactionCompleteCastsArray[i].completeTime.toDate();
         const campaignCompleteYear = campaignCompleteDate.getFullYear();
-        console.log(campaignCompleteYear)
         const campaignCompleteMonth = campaignCompleteDate.getMonth() + 1;
         if(Number(year) === campaignCompleteYear && month - 1 === campaignCompleteMonth) {
           campaignId.push(transactionCompleteCastsArray[i].campaignId);
@@ -94,42 +100,46 @@ export default {
       return campaignId;
     }
 
+    // (5) 取引完了者のいるキャンペーンデータと作成クライアントのuidを取得
     const getTransactionCompleteCampaign = async (campaignId) => {
       const campaignUid = [];
       const newCampaignId = campaignId.filter((x, i, self) => self.indexOf(x) === i);
       for(let i = 0; i < newCampaignId.length; i++) {
         const transactionCompleteCampaign = await campaignDb.where('campaignid', '==', newCampaignId[i]).get();
-        this.campaignData.push(transactionCompleteCampaign.docs[0].data())
-        campaignUid.push(transactionCompleteCampaign.docs[0].data().uid)
+        this.campaignData.push(transactionCompleteCampaign.docs[0].data());
+        campaignUid.push(transactionCompleteCampaign.docs[0].data().uid);
       }
       return campaignUid;
     }
 
+    // (6) 取引完了者のいるキャンペーンの作成クライアントデータを取得
     const getTransactionCompletecast = async (campaignUid) => {
       const newCampaignUid = campaignUid.filter((x, i, self) => self.indexOf(x) === i);
       for(let i = 0; i < newCampaignUid.length; i++) {
         const transactionCompleteCast = await accountDb.where('userId', '==', newCampaignUid[i]).get();
-        this.accounts.push(transactionCompleteCast.docs[0].data())
+        this.accounts.push(transactionCompleteCast.docs[0].data());
       }
     }
 
+    // (1) 全ての関数を実行
     const allFunction = async () => {
-      const campaignDocs = await getCampaigns()
-      const transactionCompleteCastsArray = await getTransactionCompleteCast(campaignDocs)
-      const campaignId = await checkCompleteDate(transactionCompleteCastsArray)
-      const campaignUid = await getTransactionCompleteCampaign(campaignId)
-      await getTransactionCompletecast(campaignUid)
+      const campaignDocs = await getCampaigns();
+      const transactionCompleteCastsArray = await getTransactionCompleteCast(campaignDocs);
+      const campaignId = await checkCompleteDate(transactionCompleteCastsArray);
+      const campaignUid = await getTransactionCompleteCampaign(campaignId);
+      await getTransactionCompletecast(campaignUid);
     }
 
     allFunction()
 
   },
   methods: {
+
+    // 全キャンペーンから請求対象クライアントのキャンペーンを選択し取引完了者を取得
     getMyCampaignData(account) {
       const campaignDb = firebase.firestore().collection('campaigns')
       const pdfData = []
       const pdfDataPush = async () => {
-        console.log(this.campaignData)
         for(let i = 0; i < this.campaignData.length; i++) {
           if(this.campaignData[i].uid === account.userId) {
             const myCampaign = await campaignDb.where('campaignid', '==', this.campaignData[i].campaignid).get()
@@ -162,6 +172,7 @@ export default {
       allFunction()
     },
 
+    // 取引完了データを元に請求書作成
     onDownloadPDFClickWithPDFMake(data) {
       let total = 0
       const tableList = [[ '案件名', '件数', '金額', '合計' ]]

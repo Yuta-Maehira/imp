@@ -9,12 +9,13 @@
 
           <section class="mypage-basic-data">
 
-            <!-- 画像及びプロフィール情報記載欄 -->
+            <!-- プロフィール画像 -->
             <div class="img-box">
               <img v-if="accountData.imgurl" :src="accountData.imgurl" alt="プロフィール画像">
               <img v-else src="../assets/image/no_image.png" alt="プロフィール画像">
             </div>
 
+            <!-- キャストまたはクライアント情報 -->
             <section class="mypage-basic-data-section">
               <h3>基本データ</h3>
               <table>
@@ -90,7 +91,7 @@
           <!-- プロフィール編集ボタン -->
           <router-link to="/mypage/edit/1" tag="div" class="btn">編集する</router-link>
           
-          <!-- SNS情報記載欄 -->
+          <!-- SNS情報 -->
           <section v-if="roll === 'cast'">
             <h3>SNS情報</h3>
             <div class="tab">
@@ -109,7 +110,7 @@
 
           <router-link to="/claim/create" v-if="roll === 'admin'" tag="div" class="btn">請求書作成</router-link>
 
-
+          <!-- 当月発生した支払額 -->
           <section v-if="roll === 'client'">
             <h3>支払情報</h3>
             <ul class="payment-data">
@@ -122,6 +123,7 @@
               支払詳細確認</router-link>
           </section>
 
+          <!-- 当月発生した受取額 -->
           <section v-if="roll === 'cast'">
             <h3>振込情報</h3>
             <ul class="payment-data">
@@ -131,6 +133,8 @@
             <div class="caution">
               <p>※受取額は取引完了月の翌々月振込</p>
             </div>
+
+            <!-- キャストの振込先情報 -->
             <ul class="bank-data">
               <li>
                 <div class="title">銀行名</div>
@@ -185,14 +189,14 @@ export default {
     const accountDb = firebase.firestore().collection('account')
     const campaignDb = firebase.firestore().collection('campaigns')
 
-    // (2) 自分のアカウントデータを取得して、データを配列に格納する処理
+    // (2) 自分のアカウントデータを取得
     const getMyAccountData = async () => {
       const myAccount = await accountDb.where('userId', '==', uid ).get();
       const myAccountData = myAccount.docs[0].data();
       return myAccountData;
     }
 
-    // (3) imgpathがあればimgurlを取得し、なければそのまま格納する処理
+    // (3) 画像のパスがあればURLを取得
     const dataPush = async (myAccountData) => {
       if(myAccountData.imgpath !== '') {
         const imgpath = myAccountData.imgpath;
@@ -204,7 +208,7 @@ export default {
       }
     }
     
-    // contactがtrueのキャンペーンを取得しdocとdataを格納する処理
+    // (4) 取引キャンペーンからドキュメント名とデータを取得
     const getTransactionCampiagn = async () => {
       const transactionCampaignObject = [];
       const transactionCampaigns = await campaignDb.where('contact', '==', true).get();
@@ -217,7 +221,7 @@ export default {
       return transactionCampaignObject;
     }
 
-    // クライアントの場合は支払額、キャストの際は報酬額を取得
+    // (5) クライアントの場合は支払額、キャストの際は報酬額を取得
     const getCampaignApplys = async (transactionCampaignObject) => {
       const now = new Date()
       const month = now.getMonth() + 1
@@ -268,7 +272,8 @@ export default {
 
   },
   methods: {
-    // 活動SNSを表示するための処理
+
+    // キャストのsns活動チェック
     addActive(sns) {
       if(sns === 'Instagram') {
         this.isTwitter = false;

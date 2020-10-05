@@ -6,7 +6,10 @@
       <main>
         <section class="notification-confirm-section">
           <h2>登録案件の確認</h2>
+
           <div class="notification-confirm">
+
+            <!-- 通知内容 -->
             <table class="notification-confirm-table">
               <tbody>
                 <tr>
@@ -35,7 +38,10 @@
                 </tr>
               </tbody>
             </table>
+            
           </div>
+
+          <!-- 通知内容保存ボタン -->
           <div class="btn" @click="notificationCreate">登録する</div>
           <div class="result">
             <p v-if="isResult">※ 登録に失敗しました</p>
@@ -84,7 +90,7 @@ export default {
         })
       }
 
-      // firestoreに通知データを保存する処理
+      // firestoreに通知データを保存
       const addData = () => {
         notificationDb.add({
           notificationId: String(this.uniqueNumber),

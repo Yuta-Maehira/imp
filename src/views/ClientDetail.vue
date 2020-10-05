@@ -9,7 +9,7 @@
 
           <section class="client-basic-data">
 
-          <!-- クライアントの画像 -->
+            <!-- クライアントの画像 -->
             <div class="img-box client-detail">
               <img v-if="clientData[0].imgurl" :src="clientData[0].imgurl">
               <img v-else src="@/assets/image/no_image.png" alt="クライアントの画像">
@@ -74,7 +74,6 @@
           </section>
 
         </section>
-        
       </main>
     </div>
   </div>
@@ -100,14 +99,14 @@ export default {
     this.accountId = this.$route.params['id']
     const accountDb = firebase.firestore().collection('account')
 
-    // (2) クライアントデータを取得し、変数に格納する処理
+    // (2) 選択したクライアントデータを取得
     const getClient = async () => {
       const client = await accountDb.where('accountId', '==', this.accountId).get();
       const clientData = client.docs[0].data();
       return clientData;
     }
 
-    // (3) imgpathがあればimgurlを取得し、なければそのまま格納する処理
+    // (3) 画像のパスがあればURLを取得
     const dataPush = async (clientData) => {
       if(clientData.imgpath !== "") {
         const imgpath = clientData.imgpath;

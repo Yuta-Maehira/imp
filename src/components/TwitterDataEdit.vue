@@ -1,6 +1,9 @@
 <template>
   <div class="sns-edit">
+
     <form class="sns-edit-form">
+
+      <!-- Twitterアカウント情報編集フォーム -->
       <div class="sns-edit-box">
         <div class="form-input">
           <label for="id" class="twitter">アカウントID</label>
@@ -31,7 +34,9 @@
           <input type="text" id="engage" name="engage" v-model.trim="engagement">
         </div>
       </div>
+
     </form>
+
   </div>
 </template>
 
@@ -48,6 +53,8 @@ export default {
     }
   },
   created() {
+
+    // ローカルストレージの内容をデータに保存
     this.accountId = localStorage.twitterId
     this.accountName = localStorage.twitterName
     this.accountType = localStorage.twitterType
@@ -56,6 +63,8 @@ export default {
     this.engagement = localStorage.twitterEngage
   },
   watch:{
+
+    // 各snsフォームの入力チェック
     accountId(newAccountId) {
       localStorage.twitterId = newAccountId;
     },
@@ -76,6 +85,8 @@ export default {
     },
   },
   methods: {
+    
+    // sns情報内容をstoreのstateに保存(親コンポーネントから発火)
     profileConfirm() {
       this.$store.commit('myPageSnsDataMove', {
         instagramAccountId: localStorage.instagramAccountId,

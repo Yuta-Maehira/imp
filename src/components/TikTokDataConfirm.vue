@@ -1,5 +1,7 @@
 <template>
   <div class="sns-data">
+
+    <!-- TikTokアカウント情報確認 -->
     <div class="sns-box">
       <div>
         <div class="title tiktok">アカウントID</div>
@@ -30,6 +32,7 @@
         <div class="value">{{ engagement ? engagement : '-' }}</div>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -52,6 +55,8 @@ export default {
     }
   },
   created() {
+
+    // アカウント情報表示欄にローカルストレージの内容を表示
     this.accountId = localStorage.tiktokId;
     this.accountName = localStorage.tiktokName;
     this.accountType = localStorage.tiktokType;

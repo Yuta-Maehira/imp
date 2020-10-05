@@ -9,12 +9,13 @@
 
           <section class="mypage-basic-data">
 
-            <!-- 画像及びプロフィール情報記載欄 -->
+            <!-- プロフィール画像 -->
             <div class="img-box">
               <img v-if="profileData.imgurl" :src="profileData.imgurl" alt="プロフィール画像">
               <img v-else src="../assets/image/no_image.png" alt="プロフィール画像">
             </div>
 
+            <!-- キャストまたはクライアント情報 -->
             <section class="mypage-basic-data-section">
               <h3>基本データ</h3>
               <table>
@@ -87,7 +88,7 @@
 
           </section>
           
-          <!-- SNS情報記載欄 -->
+          <!-- SNS情報 -->
           <section v-if="roll === 'cast'">
             <h3>SNS情報</h3>
             <div class="tab">
@@ -102,6 +103,7 @@
 
           </section>
 
+          <!-- キャストの振込先情報 -->
           <section v-if="roll === 'cast'">
             <h3>振込情報</h3>
             <ul class="bank-data">
@@ -154,9 +156,9 @@ export default {
       return this.$store.state.snsData;
     }
   },
-  created() {
-  },
   methods: {
+
+    // キャストのsns活動チェック
     addActive(sns) {
       if(sns === 'Instagram') {
         this.isTwitter = false;
@@ -184,6 +186,8 @@ export default {
         router.push('/mypage/confirm/4')
       }
     },
+
+    // プロフィールデータをデータベースに保存
     saveProfileData() {
       const uid = firebase.auth().currentUser.uid;
       const accountDb = firebase.firestore().collection('account');

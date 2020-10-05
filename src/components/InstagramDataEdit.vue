@@ -1,6 +1,9 @@
 <template>
   <div class="sns-edit">
+
     <form class="sns-edit-form">
+
+      <!-- Instagramアカウント情報編集フォーム -->
       <div class="sns-edit-box">
         <div class="form-input">
           <label for="id" class="instagram">アカウントID</label>
@@ -31,7 +34,9 @@
           <input type="text" id="engage" name="engage" v-model.trim="engagement">
         </div>
       </div>
+
     </form>
+
   </div>
 </template>
 
@@ -52,6 +57,8 @@ export default {
   created() {
     const uid = firebase.auth().currentUser.uid
     const accountDb = firebase.firestore().collection('account')
+
+    // (2) 自分のアカウントデータを取得
     accountDb.where('userId', '==', uid).get().then(response => {
       const data = response.docs[0].data()
 
@@ -83,6 +90,7 @@ export default {
       const tiktokAverage = data.myTikTok.goodAverage;
       const tiktokEngage = data.myTikTok.engagement;
 
+      // ローカルストレージにsns情報を保存
       localStorage.instagramId = !localStorage.instagramId ? instagramId : localStorage.instagramId
       localStorage.instagramName = !localStorage.instagramName ? instagramName : localStorage.instagramName
       localStorage.instagramType = !localStorage.instagramType ? instagramType : localStorage.instagramType
@@ -121,6 +129,8 @@ export default {
     })
   },
   watch:{
+
+    // 各snsフォームの入力チェック
     accountId(newAccountId) {
       localStorage.instagramId = newAccountId;
     },
@@ -141,6 +151,8 @@ export default {
     },
   },
   methods: {
+
+    // sns情報内容をstoreのstateに保存(親コンポーネントから発火)
     profileConfirm() {
       this.$store.commit('myPageSnsDataMove', {
         instagramAccountId: localStorage.instagramId,
