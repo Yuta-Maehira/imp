@@ -1,7 +1,6 @@
 main {
   margin: 50px auto;
   padding: 0 15px;
-  box-sizing: border-box;
   @media only screen and (min-width: 600px)  {
     width: 600px;
     margin: 80px auto;
@@ -9,6 +8,7 @@ main {
   @media only screen and (min-width: 1025px)  {
     width: 800px;
     margin: 50px auto;
+    padding: 0 30px;
   }
   
   h2 {

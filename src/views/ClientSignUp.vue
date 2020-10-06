@@ -8,7 +8,7 @@
 
     <!-- アカウント作成情報入力フォーム -->
     <div class="client-signup-input-form">
-      
+
       <div class="site-logo">
         <img src="@/assets/image/site_logo.jpg" alt="サイトのロゴ画像">
       </div>

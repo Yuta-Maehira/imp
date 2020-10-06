@@ -17,7 +17,6 @@
     display: none;
     @media only screen and (min-width: 1025px) {
       display: block;
-      width: 70%;
     }
 
     img {
@@ -46,7 +45,7 @@
       transform: none;
       display: block;
       width: 30%;
-      margin: 30px 50px 0;
+      margin: auto;
     }
 
     .site-logo {

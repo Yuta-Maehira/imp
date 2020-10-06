@@ -7,7 +7,7 @@
         <section class="cast-detail-section">
           <h2>キャスト詳細</h2>
 
-          <section class="cast-basic-data">
+          <div class="cast-basic-data">
 
             <!-- キャストの画像 -->
             <div class="img-box">
@@ -65,16 +65,18 @@
               </table>
             </section>
 
-          </section>
+          </div>
 
           <!-- 自己PR -->
-          <section class="pr-data">
-            <div class="pr-title">自己PR</div>
-            <div class="pr-value">{{ castData[0].pr ? castData[0].pr : '設定されていません' }}</div>
+          <section class="pr-section">
+            <div class="pr-data-inner">
+              <h3 class="pr-title">自己PR</h3>
+              <div class="pr-value">{{ castData[0].pr ? castData[0].pr : '設定されていません' }}</div>
+            </div>
           </section>
 
           <!-- sns情報 -->
-          <section id="scroll-inner">
+          <section class="sns-section">
             <div class="tab">
               <div :class="{active : isInstagram}" @click="addActive('Instagram')">Instagram</div>
               <div :class="{active : isTwitter}" @click="addActive('Twitter')">Twitter</div>

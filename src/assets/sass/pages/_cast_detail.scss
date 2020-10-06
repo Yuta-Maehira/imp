@@ -8,7 +8,8 @@
     @media only screen and (min-width: 1025px) {
       display: flex;
       justify-content: space-between;
-      margin: 50px 7.5%;
+      max-width: 1000px;
+      margin: 50px auto;
     }
 
     .img-box {
@@ -23,7 +24,7 @@
         height: 30%;
         min-width: 30%;
         min-height: 30%;
-        margin-right: 30px;
+        margin-right: 50px;
       }
   
       &::before {
@@ -114,53 +115,64 @@
   }
 }
 
-.pr-data {
+.pr-section {
   margin: 30px 0;
-  padding: 10px;
-  background: #add8e6;
-  border-radius: 5px;
   @media only screen and (min-width: 1025px) {
-    margin: 30px 7.5%;
-  }
-
-  .pr-title {
-    margin-bottom: 10px;
-    border-bottom: 1px solid;
+    max-width: 1000px;
+    margin: 30px auto;
   }
   
-  .pr-value {
-    color: #808080;
-    font-size: 0.8rem;
+  .pr-data-inner {
+    padding: 10px;
+    background: #add8e6;
+    border-radius: 5px;
+
+    .pr-title {
+      margin: 0 0 10px;
+      text-align: left;
+      border-bottom: 1px solid;
+    }
+    
+    .pr-value {
+      color: #808080;
+      font-size: 0.8rem;
+    }
   }
 }
 
-.tab {
-  display: flex;
-  margin: 50px 0 0;
+.sns-section {
+  max-width: 1000px;
+  margin: 50px auto;
   
-  div {
-    width: 25%;
-    padding: 7px 0;
-    border: 1px solid #808080;
-    border-bottom: none;
-    border-radius: 5px 5px 0 0;
-    text-align: center;
-    font-size: 0.8rem;
-    cursor: pointer;
-    
-    &:hover,
-    .active {
-      background: #000;
-      color: #fff;
-    }
-  }
 
-  & > div + div {
-    border-left: none;
+  .tab {
+    display: flex;
+    margin: 50px 0 0;
+    
+    div {
+      width: 25%;
+      padding: 7px 0;
+      border: 1px solid #808080;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      text-align: center;
+      font-size: 0.8rem;
+      cursor: pointer;
+      
+      &:hover,
+      .active {
+        background: #000;
+        color: #fff;
+      }
+    }
+  
+    & > div + div {
+      border-left: none;
+    }
   }
 }
 
 .sns-info {
-  padding: 10px;
+  padding: 10px 5px 0 10px;
   border: 1px solid #808080;
 }

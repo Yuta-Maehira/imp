@@ -4,7 +4,8 @@
   flex-wrap: wrap;
   margin: 50px 0 0;
   @media only screen and (min-width: 1025px) {
-    margin: 50px 7.5% 0;
+    max-width: 1000px;
+    margin: 50px auto;
   }
 
   li {
@@ -41,7 +42,8 @@
 }
 
 .caution {
-  margin: 10px 0 30px;
+  max-width: 1000px;
+  margin: 10px auto 30px;
   font-size: 0.8rem;
   font-weight: bold;
   color: #ff0000;

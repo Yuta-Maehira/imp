@@ -126,14 +126,14 @@ export default {
     descreptionLimit(text) {
       let screenWidth = window.screen.width;
       let maxLength = 20;
-      if(screenWidth >= 400) {
+      if(screenWidth >= 400 && screenWidth <= 599) {
         maxLength = 30;
-      }else if(screenWidth >= 600) {
+      }else if(screenWidth >= 600 && screenWidth <= 1024) {
         maxLength = 25;
       } else if(screenWidth >= 1025 && screenWidth <= 1299) {
         maxLength = 12;
       } else if(screenWidth >= 1300) {
-        maxLength = 18;     
+        maxLength = 15;     
       }
       if(text.length > maxLength) {
         return text.substr(0, maxLength) + '...';

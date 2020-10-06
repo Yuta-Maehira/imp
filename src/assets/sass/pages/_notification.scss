@@ -8,7 +8,8 @@
       margin: 50px 30px 0;
     }
     @media only screen and (min-width: 1025px)  {
-      margin: 50px 7.5% 0;
+      max-width: 1000px;
+      margin: 50px auto 0;
     }
   
     .paginate {
@@ -16,7 +17,7 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-      }
+    }
       
       & > div + div {
         border-top: 1px solid #c0c0c0;

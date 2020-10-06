@@ -1,9 +1,9 @@
 .total {
   width: 100%;
-  margin: 30px 0;
+  max-width: 1000px;
+  margin: 30px auto;
   padding: 20px 10px;
   border: 1px solid #d3d3d3;
-  box-sizing: border-box;
 
   .tax {
     text-align: right;
@@ -48,7 +48,8 @@
 }
 
 .detail {
-  margin: 30px 0;
+  max-width: 1000px;
+  margin: 30px auto;
   border: 1px solid #d3d3d3;
 
   .detail-title {

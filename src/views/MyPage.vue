@@ -7,7 +7,7 @@
         <section class="mypage-section">
           <h2>マイページ</h2>
 
-          <section class="mypage-basic-data">
+          <div class="mypage-basic-data">
 
             <!-- プロフィール画像 -->
             <div class="img-box">
@@ -86,7 +86,7 @@
               </table>
             </section>
 
-          </section>
+          </div>
 
           <!-- プロフィール編集ボタン -->
           <router-link to="/mypage/edit/1" tag="div" class="btn">編集する</router-link>
@@ -111,7 +111,7 @@
           <router-link to="/claim/create" v-if="roll === 'admin'" tag="div" class="btn">請求書作成</router-link>
 
           <!-- 当月発生した支払額 -->
-          <section v-if="roll === 'client'">
+          <section v-if="roll === 'client'" class="client-pay">
             <h3>支払情報</h3>
             <ul class="payment-data">
               <li class="title">支払額</li>
@@ -124,7 +124,7 @@
           </section>
 
           <!-- 当月発生した受取額 -->
-          <section v-if="roll === 'cast'">
+          <section v-if="roll === 'cast'" class="cast-pay">
             <h3>振込情報</h3>
             <ul class="payment-data">
               <li class="title">受取額</li>

@@ -8,7 +8,8 @@
     @media only screen and (min-width: 1025px) {
       display: flex;
       justify-content: space-between;
-      margin: 50px 7.5%;
+      max-width: 1000px;
+      margin: 50px auto;
     }
 
     .img-box.client-detail {

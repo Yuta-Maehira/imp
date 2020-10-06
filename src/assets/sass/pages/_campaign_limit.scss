@@ -1,9 +1,10 @@
 .campaign-limit {
   @media only screen and (min-width: 1025px) {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 7.5%;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
   }
   
   & > div + div {
@@ -16,7 +17,7 @@
       padding: 20px 0;
     }
     @media only screen and (min-width: 1025px) {
-      width: 25%;
+      width: calc(30% - 5px);
       margin: 0;
       margin: 50px calc(10% / 6) 20px;
       padding: 0;

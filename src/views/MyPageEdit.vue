@@ -86,7 +86,7 @@
             </form>
 
             <!-- SNS情報編集フォーム -->
-            <div v-if="roll === 'cast'">
+            <section v-if="roll === 'cast'">
               <h3>SNS情報</h3>
               <div class="tab">
                 <div :class="{active : isInstagram}" @click="addActive('Instagram')">Instagram</div>
@@ -97,7 +97,7 @@
               <div class="sns-info">
                 <router-view ref="profileConfirm"></router-view>
               </div>
-            </div>
+            </section>
 
             <!-- 振込先情報編集フォーム -->
             <h3 v-if="roll === 'cast'">振込先情報</h3>

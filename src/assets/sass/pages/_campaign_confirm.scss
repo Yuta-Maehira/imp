@@ -6,14 +6,10 @@
 section {
   margin: 50px 0;
   padding: 0 5px;
-  @media only screen and (min-width: 1025px) {
-    padding: 0 7.5%;
-  }
 
   .VueCarousel-slide {
     height: 300px;
     text-align: center;
-    box-sizing: border-box;
     @media only screen and (min-width: 1025px) {
       background: #f7f7f7;
     }

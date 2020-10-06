@@ -9,7 +9,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 50px 7.5%;
+      max-width: 1000px;
+      margin: 50px auto;
     }
   
     .img-box {
@@ -20,11 +21,11 @@
       min-height: 50%;
       margin: 0 auto;
       @media only screen and (min-width: 1025px) {
-        width: 30%;
-        height: 30%;
-        min-width: 30%;
-        min-height: 30%;
-        margin-right: 30px;
+        width: 300px;
+        height: 300px;
+        min-width: 300px;
+        min-height: 300px;
+        margin-right: 50px;
       }
   
       &::before {
@@ -138,7 +139,8 @@
   
   .tab {
     display: flex;
-    margin: 50px 0 0;
+    max-width: 1000px;
+    margin: 50px auto 0;
   
     div {
       width: 25%;
@@ -157,28 +159,38 @@
   }
   
   .sns-info {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px 5px 0 10px;
     border: 1px solid #808080;
   }
-  
-  .payment-data {
-    margin: 50px 0 0;
+
+  .client-pay,
+  .cast-pay {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    .payment-data {
+      margin: 50px 0 0;
+      
     
-  
-    li {
-      &.title {
-        padding: 5px 0;
-        background: #d3d3d3;
-        text-align: center;
-      }
-  
-      &.value {
-        font-size: 1.5rem;
-        padding: 10px 0;
-        background: #fffaf0;
-        text-align: center;
+      li {
+        &.title {
+          padding: 5px 0;
+          background: #d3d3d3;
+          text-align: center;
+        }
+    
+        &.value {
+          font-size: 1.5rem;
+          padding: 10px 0;
+          background: #fffaf0;
+          text-align: center;
+        }
       }
     }
   }
+  
   
   .bank-data {
     display: flex;
@@ -214,7 +226,7 @@
   }
   
   .caution {
-    margin: 10px 0 30px;
+    margin: 10px auto 30px;
     font-size: 0.8rem;
     font-weight: bold;
     color: #ff0000;

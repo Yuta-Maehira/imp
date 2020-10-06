@@ -7,7 +7,7 @@
         <section class="mypage-section">
           <h2>マイページ</h2>
 
-          <section class="mypage-basic-data">
+          <div class="mypage-basic-data">
 
             <!-- プロフィール画像 -->
             <div class="img-box">
@@ -86,7 +86,7 @@
               </table>
             </section>
 
-          </section>
+          </div>
           
           <!-- SNS情報 -->
           <section v-if="roll === 'cast'">

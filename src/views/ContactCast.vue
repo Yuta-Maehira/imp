@@ -9,7 +9,7 @@
 
           <div class="contact-box">
 
-            <section class="contact-cast" v-if="roll !== 'cast'">
+            <div class="contact-cast" v-if="roll !== 'cast'">
               <paginate class="paginate" name="paginate-log" :list="logs" :per="10" tag="div">
 
                 <!------------------- クライアント・管理者のみ表示のキャスト情報 ------------------->
@@ -71,7 +71,7 @@
                   'li > a': 'pagination-link'
                 }" 
               ></paginate-links>
-            </section>
+            </div>
 
 
             <!------------------- キャストのみ表示のクライアント情報 ------------------->
@@ -111,7 +111,7 @@
             <!------------------- チャットボタンを押した際のポップアップ ------------------->
 
             <!-- チャット画面 -->
-            <section class="overlay-box" v-show="showModal" @click="closeModal">
+            <div class="overlay-box" v-show="showModal" @click="closeModal">
               <div class="message-box" @click="stopEvent">
                 <div :class="[{helfwidth: roll ==='admin'}, 'name']">
 
@@ -145,11 +145,11 @@
                 </div>
 
               </div>
-            </section>
+            </div>
 
             <!------------------- 取引完了ボタンを押した際のポップアップ ------------------->
 
-            <section class="overlay-box" v-show="alertModal" @click="closeModal">
+            <div class="overlay-box" v-show="alertModal" @click="closeModal">
               <div class="alert-box" @click="stopEvent">
                 <p>取引を完了してもいいですか？</p>
                 <small>※これ以上の連絡はできなくなります</small><br>
@@ -159,7 +159,7 @@
                   <div @click="transactionComplete">取引完了</div>
                 </div>
               </div>
-            </section>
+            </div>
 
           </div>
         </section>
