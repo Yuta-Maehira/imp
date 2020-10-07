@@ -126,18 +126,6 @@
 }
 
 .btn {
-  width: 150px;
-  margin: 30px auto 50px;
-  padding: 8px 0;
-  text-align: center;
-  background: #ff8c00;
-  border: 1px solid #808080;
-  border-radius: 5px;
-  color: #ffe4b5;
-
-  &:hover {
-    background: #000;
-    color: #ff8c00;
-  }
+  @include btnLayout;
 }
 

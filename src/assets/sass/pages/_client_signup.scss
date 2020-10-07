@@ -1,141 +1,32 @@
 .client-signup-box {
-  position: relative;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  background-image: url('../image/login_image.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover cover;
-  @media only screen and (min-width: 1025px) {
-    background: none;
-    display: flex;
-  }
+  @include loginSignupBoxLayout('../image/client_signup.jpg');
 
   .client-signup-img {
-    display: none;
-    @media only screen and (min-width: 1025px) {
-      display: block;
-    }
+    @include loginSignupImgBoxLayout;
 
     img {
-      display: none;
-      @media only screen and (min-width: 1025px) {
-        display: block;
-        width: 100%;
-        height: 100vh;
-        vertical-align: bottom;
-      }
+      @include loginSignupImgLayout;
     }
   }
 
   .client-signup-input-form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    width: 80%;
-    max-width: 400px;
-    padding: 15px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.6);
-    @media only screen and (min-width: 1025px) {
-      position: static;
-      transform: none;
-      display: block;
-      width: 30%;
-      margin: auto;
-    }
+    @include loginSignupFormLayout;
 
     .site-logo {
-      width: 100%;
-      margin: 0 0 30px;
-
-      img {
-        border-radius: 50%;
-      }
+      @include loginSignupLogoLayout;
     }
 
     .input-title-h2 {
-      margin: 10px 0px;
-      padding: 10px 0;
-
-      h2 {
-        padding: 10px 10px;
-        border-bottom: 2px solid #ffe4b5;
-      }
+      @include loginSignupH2Layout;
     }
 
     .client-input-form {
-
-      & > div + div {
-        margin-top: 30px;
-      }
-
-      .form-input {
-        display: flex;
-        flex-direction: column;
-
-        label {
-          text-align: left;
-
-          .required {
-            background: #ff0000;
-            padding: 1px 5px;
-            border-radius: 3px;
-            font-size: 0.8rem;
-            color: #fff;
-            margin: 0 10px 0 0;
-            display: inline-block;
-          }
-        }
-
-        input {
-          margin-top: 10px;
-          padding: 5px 6px;
-          font-size: 16px;
-          border: 1px solid #696969;
-          border-radius: 3px;
-
-          &:focus {
-            background: #f5deb3;
-          }
-        }
-      }
-
-      .term {
-        margin-bottom: 20px;
-        
-        label {
-          text-align: center;
-        }
-      }
-
-      .term-link {
-
-        &:hover {
-          color: #ff8c00;
-          font-size: 1.1rem;
-          font-weight: bold;
-        }
-      }
+      @include loginSignupInputLayout;
+      @include loginSignupTermLayout;
     }
 
     .btn {
-      width: 150px;
-      margin: 50px auto 30px;
-      padding: 8px 0;
-      text-align: center;
-      background: #ff8c00;
-      border: 1px solid #808080;
-      border-radius: 5px;
-      color: #ffe4b5;
-
-      &:hover {
-        background: #fff;
-        color: #ff8c00;
-      }
+      @include btnLayout;
     }
   }
 }

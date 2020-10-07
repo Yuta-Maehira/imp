@@ -25,9 +25,6 @@
                     <h3 class="client-name">{{ log.client ? nameLimit(log.client) : nameLimit('未設定') }}</h3>
                     <p class="client-staff"><span class="title">担当: </span>{{ log.staff ? log.staff : '未設定' }}</p>
                   </div>
-                  <div class="category">
-                    <p class="client-category" v-for="(category, index) in log.category" :key="index">{{ category ? category : '未設定' }}</p>
-                  </div>
                   <div v-if="roll === 'admin'" class="inquiry">
                     <p class="email">{{ log.email ? log.email : '未設定' }}</p>
                     <p class="tell">{{ log.tell ? log.tell : '未設定' }}</p>

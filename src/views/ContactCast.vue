@@ -26,12 +26,7 @@
 
                     <!-- キャストのプロフィールの内容 -->
                     <div class="cast-info">
-                      <div class="cast-name-info">
-                        <p class="cast-name">{{ log.name ? nameLimit(log.name) : nameLimit('未設定') }}</p>
-                      </div>
-                      <div class="category">
-                        <p class="cast-category" v-for="(category, index) in log.category" :key="index">{{ category ? category : '未設定' }}</p>
-                      </div>
+                      <h3 class="cast-name">{{ log.name ? nameLimit(log.name) : nameLimit('未設定') }}</h3>
                       <div class="sns-icon">
                         <span :class="{ active: isInstagramActive }">
                           <i class="fab fa-instagram"></i>

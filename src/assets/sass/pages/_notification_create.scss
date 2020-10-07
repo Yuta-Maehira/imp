@@ -19,37 +19,16 @@
       flex-direction: column;
 
       .required {
-        background: #ff0000;
-        padding: 0 5px;
-        border-radius: 3px;
-        font-size: 1rem;
-        font-weight: bold;
-        color: #fff;
-        margin: 0 10px 0 0;
-        display: inline-block;
+        @include requiredLayout;
       }
 
       input {
-        margin-top: 10px;
-        padding: 5px 6px;
-        border: 2px solid #696969;
-        border-radius: 3px;
-
-        &:focus {
-          background: #f5deb3;
-        }
+        @include inputLayout;
       }
 
       textarea {
-        margin-top: 10px;
-        padding: 5px 6px;
-        border: 2px solid #696969;
-        border-radius: 3px;
+        @include inputLayout;
         overflow: auto;
-
-        &:focus {
-          background: #f5deb3;
-        }
       }
     }
 

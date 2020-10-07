@@ -16,9 +16,7 @@
 
           <!-- キャンペーンの内容 -->
           <div class="cast-info">
-            <div>
-              <p class="cast-name">{{ cast.name ? nameLimit(cast.name) : nameLimit('未設定') }}</p>
-            </div>
+            <h3 class="cast-name">{{ cast.name ? nameLimit(cast.name) : nameLimit('未設定') }}</h3>
             <div class="sns-icon">
               <span :class="{ active: isInstagramActive }"><i class="fab fa-instagram"></i></span>
               <span :class="{ active: isTwitterActive }"><i class="fab fa-twitter active"></i></span>

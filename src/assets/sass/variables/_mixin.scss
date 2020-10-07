@@ -1,0 +1,540 @@
+// login/signup --------------------------
+
+@mixin loginSignupBoxLayout($imgpath) {
+  position: relative;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: url($imgpath);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover cover;
+  @media only screen and (min-width: 1025px) {
+    background: none;
+    display: flex;
+  }
+}
+
+@mixin loginSignupImgBoxLayout {
+  display: none;
+  @media only screen and (min-width: 1025px) {
+    display: block;
+  }
+}
+
+@mixin loginSignupImgLayout {
+  display: none;
+  @media only screen and (min-width: 1025px) {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    vertical-align: bottom;
+  } 
+}
+
+@mixin loginSignupFormLayout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 80%;
+  max-width: 400px;
+  padding: 15px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  @media only screen and (min-width: 1025px) {
+    position: static;
+    transform: none;
+    display: block;
+    width: 30%;
+    margin: auto;
+  }
+}
+
+@mixin loginSignupLogoLayout {
+  @media only screen and (min-width: 1025px) {
+    width: 100%;
+    margin: 0 0 30px;
+  }
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+@mixin loginSignupH2Layout {
+  margin: 10px 0;
+  padding: 10px 0;
+
+  h2 {
+    padding: 10px 10px;
+    border-bottom: 2px solid #ffe4b5;
+  }
+}
+
+
+@mixin loginSignupInputLayout {
+  & > div + div {
+    margin-top: 30px;
+  }
+
+  .form-input {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      text-align: left;
+
+      .required {
+        @include requiredLayout;
+      }
+    }
+
+    input {
+      @include inputLayout;
+    }
+  }
+}
+
+@mixin loginSignupTermLayout {
+  .term {
+    margin-bottom: 20px;
+    
+    label {
+      text-align: center;
+    }
+  }
+
+  .term-link {
+
+    &:hover {
+      color: #ff8c00;
+      font-weight: bold;
+    }
+  }
+}
+
+
+// list --------------------------
+
+@mixin listLayout($margin) {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+  margin: $margin auto;
+}
+
+
+// listBox --------------------------
+
+@mixin listBoxLayout {
+  width: 75%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  padding: 3px 0;
+  @media only screen and (min-width: 1025px)  {
+    width: 100%;
+    padding: 20px 0;
+    background: #ffe4b5;
+    text-align: center;
+  }
+}
+
+@mixin listBoxTitleLayout {
+  margin: 0;
+  color: #696969;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: left;
+  border: none;
+  @media only screen and (min-width: 600px) {
+    font-size: 1.1rem;
+  }
+  @media only screen and (min-width: 1025px) {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+}
+
+@mixin listBoxDescriptionLayout {
+  font-size: 0.6rem;
+  color: #a9a9a9;
+  @media only screen and (min-width: 600px) {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  @media only screen and (min-width: 1025px) {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+}
+
+@mixin listBoxUnderLayout {
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (min-width: 1025px) {
+    display: block;
+  }
+}
+
+@mixin iconLayout {
+  font-size: 0.9rem;
+  color: #808080;
+  margin-right: 3px;
+  @media only screen and (min-width: 600px) {
+    font-size: 1.2rem;
+    margin: 0 10px 0 0;
+  }
+  @media only screen and (min-width: 1025px)  {
+    margin: 0 8px 0 0;
+  }
+}
+
+@mixin listBoxPriceLayout {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #696969;
+  @media only screen and (min-width: 600px) {
+    font-size: 1.3rem;
+  }
+  @media only screen and (min-width: 1025px) {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #696969;
+  }
+}
+
+@mixin listBoxInquiryLayout {
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (min-width: 1025px)  {
+    display: block;
+  }
+
+  .email {
+    font-size: 0.9rem;
+    @media only screen and (min-width: 600px)  {
+      font-size: 1.2rem;
+    }
+    @media only screen and (min-width: 1025px)  {
+      font-size: 0.9rem;
+    }
+  }
+  
+  .tell {
+    font-size: 0.9rem;
+    @media only screen and (min-width: 600px)  {
+      font-size: 1.2rem;
+    }
+    @media only screen and (min-width: 1025px)  {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+
+// basicData --------------------------
+
+@mixin basicDataLayout {
+  margin: 50px 0;
+  padding: 0;
+  @media only screen and (min-width: 1025px) {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 50px auto;
+  }
+}
+
+// basicData --------------------------
+
+@mixin boxLayout {
+  padding: 7px 0;
+  @media only screen and (min-width: 600px) {
+    padding: 20px 0;
+  }
+  @media only screen and (min-width: 1025px)  {
+    width: calc(30% - 5px);
+    margin: 0;
+    margin: 50px calc(10% / 6) 20px;
+    padding: 0;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 5px 5px 10px #d3d3d3;
+  }
+}
+
+
+// carousel --------------------------
+
+@mixin carouselLayout {
+  text-align: center;
+  @media only screen and (min-width: 600px) {
+    height: 300px;
+    background: #f7f7f7;
+  }
+  @media only screen and (min-width: 1025px) {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 100%;
+    @media only screen and (min-width: 600px) {
+      width: inherit;
+      height: 100%;
+    }
+  }
+}
+
+
+// img --------------------------
+
+@mixin imgBoxSpLayout($value) {
+  position: relative;
+  width: $value;
+  height: $value;
+  min-width: $value;
+  min-height: $value;
+  margin: 0 auto;
+}
+
+@mixin imgBoxPcLayout($value) {
+  width: $value;
+  height: $value;
+  min-width: $value;
+  min-height: $value;
+}
+
+
+@mixin imgBoxBeforeLayout {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+@mixin imgLayout {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  object-fit: cover;
+  border: 1px solid #2c3e50;
+  border-radius: 50%;
+}
+
+
+// table --------------------------
+
+@mixin tableLayout {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  @media only screen and (min-width: 1025px) {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}
+
+
+// tr --------------------------
+
+@mixin trLayout {
+  border: 1px solid #d3d3d3;
+  border-left: none;
+  border-right: none;
+}
+
+
+// th --------------------------
+
+@mixin tbodyThLayout {
+  width: 70px;
+  padding: 5px, 8px;
+  font-size: 0.7rem;
+  font-weight: normal;
+  background: #f7f7f7;
+  @media only screen and (min-width: 600px) {
+    width: 80px;
+    padding: 5px, 12px;
+    font-size: 0.7rem;
+  }
+  @media only screen and (min-width: 1025px) {
+    width: 100px;
+    padding: 8px, 16px;
+    font-size: 0.8rem;
+  }
+}
+
+
+// td --------------------------
+
+@mixin tdLayout {
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  @media only screen and (min-width: 600px) {
+    padding: 5px 10px;
+  }
+  @media only screen and (min-width: 1025px) {
+    font-size: 0.9rem;
+  }
+}
+
+
+// pr --------------------------
+
+@mixin prSectionLayout {
+  margin: 30px 0;
+  @media only screen and (min-width: 1025px) {
+    max-width: 1000px;
+    margin: 30px auto;
+  }
+}
+
+@mixin prDataLayout {
+  padding: 10px;
+  background: #add8e6;
+  border-radius: 5px;
+}
+
+@mixin prTitleLayout {
+  margin: 0 0 10px;
+  text-align: left;
+  border-bottom: 1px solid;
+}
+
+@mixin prValueLayout {
+  color: #808080;
+  font-size: 0.8rem;
+}
+
+
+// sns --------------------------
+
+@mixin snsSectionLayout {
+  max-width: 1000px;
+  margin: 50px auto;
+}
+
+@mixin tabLayout {
+  display: flex;
+  max-width: 1000px;
+  margin: 50px auto 0;
+
+  div {
+    width: 25%;
+    padding: 7px 0;
+    border: 1px solid #808080;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    
+    &:hover,
+    .active {
+      background: #000;
+      color: #fff;
+    }
+  }
+
+  & > div + div {
+    border-left: none;
+  }
+}
+
+@mixin snsInfoLayout {
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #808080;
+}
+
+
+// h3 --------------------------
+
+@mixin h3Layout {
+  margin: 50px 0 30px;
+  text-align: left;
+  font-size: 0.9rem;
+  @media only screen and (min-width: 1025px) {
+    max-width: 1000px;
+    margin: 50px auto 30px;
+  }
+}
+
+// campaignDescription --------------------------
+
+@mixin campaignDescriptionLayout {
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  @media only screen and (min-width: 1025px) {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}
+
+// input --------------------------
+
+@mixin inputLayout {
+  margin-top: 10px;
+  padding: 5px 6px;
+  font-size: 16px;
+  border: 1px solid #696969;
+  border-radius: 3px;
+
+  &:focus {
+    background: #f5deb3;
+  }
+}
+
+
+// required --------------------------
+
+@mixin requiredLayout($color:#ff0000) {
+  background: $color;
+  padding: 0 5px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  color: #fff;
+  margin: 0 10px 0 0;
+  display: inline-block;
+}
+
+
+// btn --------------------------
+
+@mixin btnLayout {
+  width: 150px;
+  margin: 50px auto 30px;
+  padding: 8px 0;
+  text-align: center;
+  background: #ff8c00;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  color: #ffe4b5;
+
+  &:hover {
+    background: #fff;
+    color: #ff8c00;
+  }
+}
+
+
+// caution --------------------------
+
+@mixin cautionLayout {
+  margin: 10px auto 30px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #ff0000;
+  text-align: right;
+}

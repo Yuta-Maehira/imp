@@ -42,10 +42,5 @@
 }
 
 .caution {
-  max-width: 1000px;
-  margin: 10px auto 30px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: #ff0000;
-  text-align: right;
+  @include cautionLayout;
 }

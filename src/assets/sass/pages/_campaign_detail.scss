@@ -10,6 +10,7 @@ main {
 }
 
 .campaign-detail-section {
+  margin-top: 0;
   padding: 0;
 
   section {
@@ -20,24 +21,11 @@ main {
     }
   
     .VueCarousel-slide {
-      height: 300px;
-      text-align: center;
-      @media only screen and (min-width: 1025px) {
-        padding: 0 7.5%;
-        background: #f7f7f7;
-      }
-    
-      img {
-        height: 100%;
-      }
+      @include carouselLayout;
     }
     
     table {
-      width: 100%;
-      max-width: 100%;
-      margin-bottom: 20px;
-      border-collapse: collapse;
-      border-spacing: 0;
+      @include tableLayout;
   
       thead {
         tr {
@@ -65,9 +53,7 @@ main {
         vertical-align: middle;
         
         tr {
-          border: 1px solid #d3d3d3;
-          border-left: none;
-          border-right: none;
+          @include trLayout;
   
           &.cast-row {
   
@@ -76,7 +62,7 @@ main {
               text-align: center;
   
               &:nth-child(1) {
-                width: 10%;
+                width: 15%;
               }
   
               &.detail-btn-box {
@@ -115,99 +101,41 @@ main {
           }
           
           th {
-            width: 70px;
-            padding: 5px 8px;
-            font-size: 0.7rem;
-            font-weight: normal;
-            background: #f7f7f7;
-            @media only screen and (min-width: 600px) {
-              width: 80px;
-              padding: 5px 12px;
-              font-size: 0.7rem;
-              font-weight: normal;
-              background: #f7f7f7;
-            }
-            @media only screen and (min-width: 1025px) {
-              width: 100px;
-              padding: 8px 16px;
-              font-size: 0.8rem;
-              font-weight: normal;
-              background: #f7f7f7;
-            }
+            @include tbodyThLayout;
           }
       
           td {
-            padding: 2px 8px;
-            font-size: 0.7rem;
-            @media only screen and (min-width: 600px) {
-              padding: 5px 10px;
-              font-size: 0.7rem;
-            }
-            @media only screen and (min-width: 1025px) {
-              font-size: 0.9rem;
-            }
+            @include tdLayout;
       
             i {
-              font-size: 1.1rem;
-              color: #ff8c00;
-              @media only screen and (min-width: 600px) {
-                font-size: 1.2rem;
-              }
-              @media only screen and (min-width: 1025px) {
-                font-size: 1.3rem;
-              }
+              @include iconLayout;
             }
   
             .cast-img {
-              position: relative;
-              width: 70%;
-              height: 70%;
-              min-width: 70%;
-              min-height: 70%;
-              margin-right: 10px;
-              padding: 0;
-              @media only screen and (min-width: 1025px)  {
-                width: 40%;
-                height: 40%;
-                min-width: 40%;
-                min-height: 40%;
+              @include imgBoxSpLayout(70%);
+              @media only screen and (min-width: 1025px) {
+                @include imgBoxPcLayout(40%);
               }
   
               &::before {
-                content: "";
-                display: block;
-                padding-top: 100%;
+                @include imgBoxBeforeLayout;
               }
         
               img {
-                position: absolute;
-                width: 100%;
-                height: 100%; 
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                margin: auto;
-                object-fit: cover;
-                border: 1px solid #2c3e50;
-                border-radius: 50%;
+                @include imgLayout;
               }
             }
           }
         }
-        
       }
     }
   
     .campaign-detail-h3 {
-      margin: 50px 0 30px;
-      text-align: left;
-      font-size: 0.9rem;
+      @include h3Layout;
     }
   
     .campaign-detail {
-      font-size: 0.8rem;
-      white-space: pre-wrap;
+      @include campaignDescriptionLayout;
     }
   }
 }

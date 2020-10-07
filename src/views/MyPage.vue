@@ -92,7 +92,7 @@
           <router-link to="/mypage/edit/1" tag="div" class="btn">編集する</router-link>
           
           <!-- SNS情報 -->
-          <section v-if="roll === 'cast'">
+          <section v-if="roll === 'cast'" class="sns-section">
             <h3>SNS情報</h3>
             <div class="tab">
               <div :class="{active : isInstagram}" @click="addActive('Instagram')">Instagram</div>
