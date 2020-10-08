@@ -97,6 +97,7 @@ export default new Vuex.Store({
                 bank: "",
                 branch: "",
                 accountNum: "",
+                pr: "",
                 myInstagram: {
                   accountId: "",
                   accountName: "",

@@ -4,20 +4,21 @@
     <div class="container">
       <SideBar/>
       <main>
-        <section class="mypage-section">
+        <section class="mypage-confirm-section">
           <h2>マイページ</h2>
 
-          <div class="mypage-basic-data">
+          <!-- 基本情報 -->
+          <section class="mypage-basic-section">
+            <h3>基本データ</h3>
+            <div class="basic-data">
 
-            <!-- プロフィール画像 -->
-            <div class="img-box">
-              <img v-if="profileData.imgurl" :src="profileData.imgurl" alt="プロフィール画像">
-              <img v-else src="../assets/image/no_image.png" alt="プロフィール画像">
-            </div>
+              <!-- プロフィール画像 -->
+              <div class="img-box">
+                <img v-if="profileData.imgurl" :src="profileData.imgurl" alt="プロフィール画像">
+                <img v-else src="../assets/image/no_image.png" alt="プロフィール画像">
+              </div>
 
-            <!-- キャストまたはクライアント情報 -->
-            <section class="mypage-basic-data-section">
-              <h3>基本データ</h3>
+              <!-- キャストまたはクライアント情報 -->
               <table>
                 <tbody>
                   <tr>
@@ -74,22 +75,31 @@
                     </th>
                     <td>
                       <div v-if="
-                        profileData.adress1 !== '' &&
-                        profileData.adress2 !== '' &&
+                        profileData.adress1 !== '' ||
+                        profileData.adress2 !== '' ||
                         profileData.apartment !== ''
                       ">
                         {{ profileData.adress1 }}{{ profileData.adress2 }}{{ profileData.apartment }}
                       </div>
+                      <div v-else>未設定</div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-            </section>
 
-          </div>
+            </div>
+          </section>
+
+          <!-- PR情報 -->
+          <section v-if="roll === 'cast'"  class="pr-section">
+            <div class="pr-data-inner">
+              <h3 class="pr-title">自己PR</h3>
+              <div class="pr-value">{{ profileData.pr ? profileData.pr : '設定されていません' }}</div>
+            </div>
+          </section>
           
           <!-- SNS情報 -->
-          <section v-if="roll === 'cast'">
+          <section v-if="roll === 'cast'" class="mypage-sns-section">
             <h3>SNS情報</h3>
             <div class="tab">
               <div :class="{active : isInstagram}" @click="addActive('Instagram')">Instagram</div>
@@ -104,7 +114,7 @@
           </section>
 
           <!-- キャストの振込先情報 -->
-          <section v-if="roll === 'cast'">
+          <section v-if="roll === 'cast'" class="mypage-back-section">
             <h3>振込情報</h3>
             <ul class="bank-data">
               <li>
@@ -121,6 +131,7 @@
               </li>
             </ul>
           </section>
+
           <div class="btn" @click="saveProfileData">保存する</div> 
         </section>
       </main>
@@ -222,6 +233,7 @@ export default {
             bank: myProfileData.bank,
             branch: myProfileData.branch,
             accountNum: myProfileData.accountNum,
+            pr: myProfileData.pr,
             myInstagram: {
               accountId: localStorage.instagramId,
               accountName: localStorage.instagramName,

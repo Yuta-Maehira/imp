@@ -7,17 +7,17 @@
         <section class="mypage-section">
           <h2>マイページ</h2>
 
-          <div class="mypage-basic-data">
+          <section class="mypage-basic-section">
+            <h3>基本データ</h3>
+            <div class="basic-data">
 
-            <!-- プロフィール画像 -->
-            <div class="img-box">
-              <img v-if="accountData.imgurl" :src="accountData.imgurl" alt="プロフィール画像">
-              <img v-else src="../assets/image/no_image.png" alt="プロフィール画像">
-            </div>
+              <!-- プロフィール画像 -->
+              <div class="img-box">
+                <img v-if="accountData.imgurl" :src="accountData.imgurl" alt="プロフィール画像">
+                <img v-else src="../assets/image/no_image.png" alt="プロフィール画像">
+              </div>
 
-            <!-- キャストまたはクライアント情報 -->
-            <section class="mypage-basic-data-section">
-              <h3>基本データ</h3>
+              <!-- キャストまたはクライアント情報 -->
               <table>
                 <tbody>
                   <tr>
@@ -74,8 +74,8 @@
                     </th>
                     <td>
                       <div v-if="
-                        accountData.adress1 !== '' &&
-                        accountData.adress2 !== '' &&
+                        accountData.adress1 !== '' ||
+                        accountData.adress2 !== '' ||
                         accountData.apartment !== ''
                       ">
                         {{ accountData.adress1 }}{{ accountData.adress2 }}{{ accountData.apartment }}
@@ -84,12 +84,20 @@
                   </tr>
                 </tbody>
               </table>
-            </section>
+            </div>
 
-          </div>
+          </section>
 
           <!-- プロフィール編集ボタン -->
           <router-link to="/mypage/edit/1" tag="div" class="btn">編集する</router-link>
+
+          <!-- 自己PR -->
+          <section v-if="roll === 'cast'"  class="pr-section">
+            <div class="pr-data-inner">
+              <h3 class="pr-title">自己PR</h3>
+              <div class="pr-value">{{ accountData.pr ? accountData.pr : '設定されていません' }}</div>
+            </div>
+          </section>
           
           <!-- SNS情報 -->
           <section v-if="roll === 'cast'" class="sns-section">
@@ -111,7 +119,7 @@
           <router-link to="/claim/create" v-if="roll === 'admin'" tag="div" class="btn">請求書作成</router-link>
 
           <!-- 当月発生した支払額 -->
-          <section v-if="roll === 'client'" class="client-pay">
+          <section v-if="roll === 'client'" class="client-pay-section">
             <h3>支払情報</h3>
             <ul class="payment-data">
               <li class="title">支払額</li>
@@ -124,7 +132,7 @@
           </section>
 
           <!-- 当月発生した受取額 -->
-          <section v-if="roll === 'cast'" class="cast-pay">
+          <section v-if="roll === 'cast'" class="cast-pay-section">
             <h3>振込情報</h3>
             <ul class="payment-data">
               <li class="title">受取額</li>

@@ -7,17 +7,17 @@
         <section class="cast-detail-section">
           <h2>キャスト詳細</h2>
 
-          <div class="cast-basic-data">
+          <section class="cast-basic-section">
+            <h3>基本データ</h3>
+            <div class="basic-data">
 
-            <!-- キャストの画像 -->
-            <div class="img-box">
-              <img v-if="castData[0].imgurl" :src="castData[0].imgurl">
-              <img v-else src="@/assets/image/no_image.png" alt="キャストの画像">
-            </div>
+              <!-- キャストの画像 -->
+              <div class="img-box">
+                <img v-if="castData[0].imgurl" :src="castData[0].imgurl">
+                <img v-else src="@/assets/image/no_image.png" alt="キャストの画像">
+              </div>
 
-            <!-- キャスト情報 -->
-            <section class="cast-basic-data-section">
-              <h3>基本データ</h3>
+              <!-- キャスト情報 -->
               <table>
                 <tbody>
                   <tr>
@@ -63,9 +63,9 @@
                   </tr>
                 </tbody>
               </table>
-            </section>
+            </div>
 
-          </div>
+          </section>
 
           <!-- 自己PR -->
           <section class="pr-section">
@@ -77,6 +77,7 @@
 
           <!-- sns情報 -->
           <section class="sns-section">
+            <h3>SNS情報</h3>
             <div class="tab">
               <div :class="{active : isInstagram}" @click="addActive('Instagram')">Instagram</div>
               <div :class="{active : isTwitter}" @click="addActive('Twitter')">Twitter</div>

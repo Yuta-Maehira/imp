@@ -1,20 +1,13 @@
 .mypage-edit-section {
   margin: 0;
   padding: 0;
-  
-  .profile-input-form {
-    @media only screen and (min-width: 1025px) {
-      margin: 30px 0;
-    }
-  
+
+  .profile-edit-section {
+    @include sectionWidth;
+
     .basic-data {
-      margin: 50px auto;
-      @media only screen and (min-width: 1025px) {
-        display: flex;
-        justify-content: space-between;
-        max-width: 1000px;
-      }
-      
+      @include basicDataLayout;
+
       .img-box {
         @include imgBoxSpLayout(50%);
         @media only screen and (min-width: 1025px) {
@@ -31,15 +24,13 @@
           @include imgLayout;
         }
       }
-  
-      .profile-block {
-        margin-top: 50px;
+
+      .profile-input-form {
         @media only screen and (min-width: 1025px) {
           flex: 1;
-          margin-top: 0;
+          margin: 0;
         }
-  
-  
+      
         .form-input {
           display: flex;
           flex-direction: column;
@@ -67,100 +58,99 @@
           input {
             @include inputLayout;
           }
+
+          select {
+            margin: 5px 0;
+            padding: 5px 0;
+            font-size:16px;
+          }
         }
       }
     }
-  
-    .adress-block {
+  }
+
+  .pr-edit-section {
+    @include sectionWidth;
+
+    .pr-input-form {
       display: flex;
       flex-direction: column;
+      margin-top: 30px;
+
+      label {
+        width: 100%;
+        @media only screen and (min-width: 1025px) {
+          font-size: 0.8rem;
+        }
+      }
+
+      .free {
+        @include requiredLayout;
+        background: #00bfff;
+      }
+
+      textarea {
+        @include inputLayout;
+      }
+    }
+  }
+
+  .sns-edit-section {
+    @include sectionWidth;
+
+    .tab {
+      @include tabLayout;
+    }
+  
+    .sns-info {
+      @include snsInfoLayout;
+      padding: 10px 10px 5px;
+    }
+  }
+
+  .bank-edit-section {
+    @include sectionWidth;
+
+    .bank-input-form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
       @media only screen and (min-width: 1025px) {
         flex-direction: row;
         justify-content: space-between;
         max-width: 1000px;
-        margin: 50px auto;
+        margin: 30px auto;
       }
   
+      & > div + div {
+        margin-top: 30px;
+      }
+    
       .form-input {
         display: flex;
         flex-direction: column;
-        margin-top: 30px;
         width: 100%;
         @media only screen and (min-width: 1025px) {
-          width: 30%;
           margin-top: 10px;
+          width: 30%;
         }
-
-        label {
-          font-size: 0.8rem;
-        }
-  
+    
         .free {
           @include requiredLayout(#00bfff);
         }
-  
-        select {
+    
+        input {
           margin-top: 10px;
-          padding: 4px 0;
+          padding: 5px 6px;
+          font-size: 16px;
           border: 1px solid #696969;
           border-radius: 3px;
-        }
-  
-        input {
-          @include inputLayout;
-        }
-      }
-    }
-  }
-  
-  .bank-input-form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    @media only screen and (min-width: 1025px) {
-      flex-direction: row;
-      justify-content: space-between;
-      max-width: 1000px;
-      margin: 30px auto;
-    }
-
-    & > div + div {
-      margin-top: 30px;
-    }
-  
-    .form-input {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      @media only screen and (min-width: 1025px) {
-        margin-top: 10px;
-        width: 30%;
-      }
-  
-      .free {
-        @include requiredLayout(#00bfff);
-      }
-  
-      input {
-        margin-top: 10px;
-        padding: 5px 6px;
-        font-size: 16px;
-        border: 1px solid #696969;
-        border-radius: 3px;
-  
-        &:focus {
-          background: #f5deb3;
+    
+          &:focus {
+            background: #f5deb3;
+          }
         }
       }
     }
   }
-
-  .tab {
-    @include tabLayout;
-  }
-
-  .sns-info {
-    @include snsInfoLayout;
-    padding: 10px 10px 5px;
-}
 }

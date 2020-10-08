@@ -2,41 +2,34 @@
   margin: 0;
   padding: 0;
 
-  .cast-basic-data {
-    @include basicDataLayout;
+  .cast-basic-section {
+    @include sectionWidth;
 
-    .img-box {
-      @include imgBoxSpLayout(50%);
-      @media only screen and (min-width: 1025px) {
-        @include imgBoxPcLayout(300px);
-        margin-right: 50px;
-      }
-  
-      &::before {
-        @include imgBoxBeforeLayout;
-      }
-  
-      img {
-        @include imgLayout;
-      }
-  
-    }
+    .basic-data {
+      @include basicDataLayout;
+
+      .img-box {
+        @include imgBoxSpLayout(50%);
+        @media only screen and (min-width: 1025px) {
+          @include imgBoxPcLayout(300px);
+          margin-right: 50px;
+        }
     
-    .cast-basic-data-section {
-      @media only screen and (min-width: 1025px) {
-        width: 70%;
-        margin: 0;
-        padding: 0;
-      }
-
-      h3 {
-        margin: 0;
-        margin-bottom: 30px;
-        text-align: left;
+        &::before {
+          @include imgBoxBeforeLayout;
+        }
+    
+        img {
+          @include imgLayout;
+        }
+    
       }
 
       table {
         @include tableLayout;
+        @media only screen and (min-width: 1025px) {
+          width: calc(100% - 350px);
+        }
         
         tr {
           @include trLayout;
@@ -55,7 +48,7 @@
 }
 
 .pr-section {
-  @include prSectionLayout;
+  @include sectionWidth;
   
   .pr-data-inner {
     @include prDataLayout;
@@ -71,7 +64,7 @@
 }
 
 .sns-section {
-  @include snsSectionLayout;
+  @include sectionWidth;
   
   .tab {
     @include tabLayout;

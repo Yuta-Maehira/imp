@@ -245,8 +245,6 @@
   @media only screen and (min-width: 1025px) {
     display: flex;
     justify-content: space-between;
-    max-width: 1000px;
-    margin: 50px auto;
   }
 }
 
@@ -265,6 +263,16 @@
     border: 1px solid #c0c0c0;
     border-radius: 10px 10px 0 0;
     box-shadow: 5px 5px 10px #d3d3d3;
+  }
+}
+
+
+// basicData --------------------------
+
+@mixin sectionWidth {
+  @media only screen and (min-width: 1025px) {
+    max-width: 1000px;
+    margin: 50px auto 0;
   }
 }
 
@@ -392,14 +400,6 @@
 
 // pr --------------------------
 
-@mixin prSectionLayout {
-  margin: 30px 0;
-  @media only screen and (min-width: 1025px) {
-    max-width: 1000px;
-    margin: 30px auto;
-  }
-}
-
 @mixin prDataLayout {
   padding: 10px;
   background: #add8e6;
@@ -419,11 +419,6 @@
 
 
 // sns --------------------------
-
-@mixin snsSectionLayout {
-  max-width: 1000px;
-  margin: 50px auto;
-}
 
 @mixin tabLayout {
   display: flex;
@@ -456,6 +451,14 @@
   max-width: 1000px;
   margin: 0 auto;
   border: 1px solid #808080;
+}
+
+
+// bank --------------------------
+
+@mixin bankSectionLayout {
+  max-width: 1000px;
+  margin: 50px auto;
 }
 
 

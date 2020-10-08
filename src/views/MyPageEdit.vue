@@ -6,100 +6,104 @@
       <main>
         <section class="mypage-edit-section">
           <h2>プロフィール編集</h2>
-          <div class="profile-input">
-            <form class="profile-input-form" name="createprofile">
 
-              <div class="basic-data">
-
-                <!-- プロフィール画像 -->
-                <div class="img-box">
-                  <img v-if="profileData.imgurl" :src="profileData.imgurl">
-                  <img v-else src="../assets/image/no_image.png" alt="プロフィール画像">
-                </div>
-
-                <div class="profile-block">
-
-                  <!-- プロフィール画像フォーム -->
-                  <div class="form-input">
-                    <label for="image"><span class="required">必須</span>プロフィール画像</label>
-                    <input type="file" id="image" name="image" @change="attachImage" required>
-                  </div>
-
-                  <!-- 会社名入力フォーム -->
-                  <div v-if="roll === 'admin' || roll === 'client'" class="form-input">
-                    <label for="client"><span class="required">必須</span>会社名</label>
-                    <input type="text" id="client" name="client" v-model.trim="profileData.client" required>
-                  </div>
-
-                  <!-- 担当者名入力フォーム -->
-                  <div v-if="roll === 'admin' || roll === 'client'" class="form-input">
-                    <label for="staff"><span class="required">必須</span>担当者名</label>
-                    <input type="text" id="staff" name="staff" v-model.trim="profileData.staff" required>
-                  </div>
-
-                  <!-- キャスト名入力フォーム -->
-                  <div v-if="roll === 'cast'" class="form-input">
-                    <label for="client"><span class="required">必須</span>名前</label>
-                    <input type="text" id="client" name="client" v-model.trim="profileData.name" required>
-                  </div>
-
-                  <!-- キャストニックネーム入力フォーム -->
-                  <div v-if="roll === 'cast'" class="form-input">
-                    <label for="staff"><span class="required">必須</span>ニックネーム</label>
-                    <input type="text" id="staff" name="staff" v-model.trim="profileData.nickName" required>
-                  </div>
-
-                  <!-- メールアドレス入力フォーム -->
-                  <div class="form-input">
-                    <label for="email"><span class="required">必須</span>メールアドレス</label>
-                    <input type="text" id="email" name="email" :value="profileData.email" required readonly>
-                  </div>
-
-                  <!-- 電話番号入力フォーム -->
-                  <div class="form-input">
-                    <label for="tell"><span class="free">任意</span>電話番号</label>
-                    <input type="text" id="tell" name="tell" v-model.trim="profileData.tell" required>
-                  </div>
-                </div>
+          <!-- 基本情報編集フォーム -->
+          <section class="profile-edit-section">
+            <h3>基本情報</h3>
+            <div class="basic-data">
+              <div class="img-box">
+                <img v-if="profileData.imgurl" :src="profileData.imgurl">
+                <img v-else src="../assets/image/no_image.png" alt="プロフィール画像">
               </div>
-
-              <!-- 住所入力フォーム -->
-              <div class="adress-block">
+              <form class="profile-input-form" name="createprofile">
+                <!-- プロフィール画像フォーム -->
                 <div class="form-input">
-                  <label for="adress1"><span class="free">必須</span>都道府県</label>
+                  <label for="image"><span class="required">必須</span>プロフィール画像</label>
+                  <input type="file" id="image" name="image" @change="attachImage" required>
+                </div>
+
+                <!-- 会社名入力フォーム -->
+                <div v-if="roll === 'admin' || roll === 'client'" class="form-input">
+                  <label for="client"><span class="required">必須</span>会社名</label>
+                  <input type="text" id="client" name="client" v-model.trim="profileData.client" required>
+                </div>
+
+                <!-- 担当者名入力フォーム -->
+                <div v-if="roll === 'admin' || roll === 'client'" class="form-input">
+                  <label for="staff"><span class="required">必須</span>担当者名</label>
+                  <input type="text" id="staff" name="staff" v-model.trim="profileData.staff" required>
+                </div>
+
+                <!-- キャスト名入力フォーム -->
+                <div v-if="roll === 'cast'" class="form-input">
+                  <label for="client"><span class="required">必須</span>名前</label>
+                  <input type="text" id="client" name="client" v-model.trim="profileData.name" required>
+                </div>
+
+                <!-- キャストニックネーム入力フォーム -->
+                <div v-if="roll === 'cast'" class="form-input">
+                  <label for="staff"><span class="required">必須</span>ニックネーム</label>
+                  <input type="text" id="staff" name="staff" v-model.trim="profileData.nickName" required>
+                </div>
+
+                <!-- メールアドレス入力フォーム -->
+                <div class="form-input">
+                  <label for="email"><span class="required">必須</span>メールアドレス</label>
+                  <input type="text" id="email" name="email" :value="profileData.email" required readonly>
+                </div>
+
+                <!-- 電話番号入力フォーム -->
+                <div class="form-input">
+                  <label for="tell"><span class="free">任意</span>電話番号</label>
+                  <input type="text" id="tell" name="tell" v-model.trim="profileData.tell" required>
+                </div>
+
+                <div class="form-input">
+                  <label for="adress1"><span class="free">任意</span>都道府県</label>
                   <select v-model="profileData.adress1">
                     <option v-for="prefecture in prefectures" :key="prefecture">{{ prefecture }}</option>
                   </select>
                 </div>
 
                 <div class="form-input">
-                  <label for="adress2"><span class="free">必須</span>以降住所</label>
-                  <input type="text" id="adress2" name="adress2" v-model.trim="profileData.adress2" required>
+                  <label for="adress2"><span class="free">任意</span>以降住所</label>
+                  <input type="text" id="adress2" name="adress2" v-model.trim="profileData.adress2">
                 </div>
 
                 <div class="form-input">
-                  <label for="apartment"><span class="free">必須</span>建物名</label>
-                  <input type="text" id="apartment" name="apartment" v-model.trim="profileData.apartment" required>
+                  <label for="apartment"><span class="free">任意</span>建物名</label>
+                  <input type="text" id="apartment" name="apartment" v-model.trim="profileData.apartment">
                 </div>
-              </div>
 
+              </form>
+            </div>
+          </section>
+
+          <!-- pr情報編集フォーム -->
+          <section v-if="roll === 'cast'" class="pr-edit-section">
+            <h3>PR情報</h3>
+            <form class="pr-input-form" name="createpr">
+              <label for="pr"><span class="free">任意</span>PR</label>
+              <textarea name="pr" rows="10" placeholder="※ クライアントにむけたPR文を記入してください" v-model.trim="profileData.pr"></textarea>
             </form>
+          </section>
 
-            <!-- SNS情報編集フォーム -->
-            <section v-if="roll === 'cast'">
-              <h3>SNS情報</h3>
-              <div class="tab">
-                <div :class="{active : isInstagram}" @click="addActive('Instagram')">Instagram</div>
-                <div :class="{active : isTwitter}" @click="addActive('Twitter')">Twitter</div>
-                <div :class="{active : isYouTube}" @click="addActive('YouTube')">YouTube</div>
-                <div :class="{active : isTikTok}" @click="addActive('TikTok')">TikTok</div>
-              </div>
-              <div class="sns-info">
-                <router-view ref="profileConfirm"></router-view>
-              </div>
-            </section>
+          <!-- SNS情報編集フォーム -->
+          <section v-if="roll === 'cast'" class="sns-edit-section">
+            <h3>SNS情報</h3>
+            <div class="tab">
+              <div :class="{active : isInstagram}" @click="addActive('Instagram')">Instagram</div>
+              <div :class="{active : isTwitter}" @click="addActive('Twitter')">Twitter</div>
+              <div :class="{active : isYouTube}" @click="addActive('YouTube')">YouTube</div>
+              <div :class="{active : isTikTok}" @click="addActive('TikTok')">TikTok</div>
+            </div>
+            <div class="sns-info">
+              <router-view ref="profileConfirm"></router-view>
+            </div>
+          </section>
 
-            <!-- 振込先情報編集フォーム -->
+          <!-- 振込先情報編集フォーム -->
+          <section v-if="roll === 'cast'" class="bank-edit-section">
             <h3 v-if="roll === 'cast'">振込先情報</h3>
             <form v-if="roll === 'cast'" class="bank-input-form" name="createbank">
 
@@ -119,8 +123,9 @@
               </div>
 
             </form>
-            <div class="btn" @click="profileConfirm">確認する</div> 
-          </div>
+          </section>
+
+          <div class="btn" @click="profileConfirm">確認する</div> 
         </section>
       </main>
     </div>
@@ -158,6 +163,7 @@ export default {
         bank: '',
         branch: '',
         accountNum: '',
+        pr: '',
       },
       uploadedImage: '',
       isInstagram: true,

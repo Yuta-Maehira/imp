@@ -1,7 +1,7 @@
-.mypage-section {
+.mypage-confirm-section {
   margin: 0;
   padding: 0;
-  
+
   .mypage-basic-section {
     @include sectionWidth;
 
@@ -46,58 +46,21 @@
     }
   }
 
-  .pr-section {
-    @include sectionWidth;
-    
-    .pr-data-inner {
-      @include prDataLayout;
-  
-      .pr-title {
-        @include prTitleLayout;
-      }
-      
-      .pr-value {
-        @include prValueLayout;
-      }
-    }
-  }
-  
-  .sns-section {
-    @include sectionWidth;
-  
-  .tab {
-    @include tabLayout;
-  }
-  
-  .sns-info {
-    @include snsInfoLayout;
-    padding: 10px 5px 0 10px;
-  }
-}
-
-  .client-pay-section,
-  .cast-pay-section {
+  .mypage-sns-section {
     @include sectionWidth;
 
-    .payment-data {
-      margin: 50px 0 0;
-      
-    
-      li {
-        &.title {
-          padding: 5px 0;
-          background: #d3d3d3;
-          text-align: center;
-        }
-    
-        &.value {
-          padding: 10px 0;
-          font-size: 1.5rem;
-          background: #fffaf0;
-          text-align: center;
-        }
-      }
+    .tab {
+      @include tabLayout;
     }
+    
+    .sns-info {
+      @include snsInfoLayout;
+      padding: 10px 5px 0 10px;
+    }
+  }
+
+  .mypage-back-section {
+    @include bankSectionLayout;
     
     .bank-data {
       display: flex;
@@ -106,7 +69,6 @@
       margin: 50px 0 0;    
     
       li {
-  
         .title {
           padding: 5px 0;
           background: #d3d3d3;
@@ -132,9 +94,5 @@
     
       }
     }
-  }
-  
-  .caution {
-    @include cautionLayout;
   }
 }

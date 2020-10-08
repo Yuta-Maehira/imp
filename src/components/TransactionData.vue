@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section class="transaction-section">
     <div v-if="roll === 'admin' || roll === 'client'">
       <h3>クライアントデータ</h3>
 
@@ -51,7 +51,7 @@
     </div>
       
     
-  </div>
+  </section>
 </template>
 
 <script>
