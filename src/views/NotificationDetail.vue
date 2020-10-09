@@ -52,29 +52,41 @@ export default {
   data() {
     return {
       roll: "",
-      notificationId: "",
       notificationData: {}
     }
   },
   created() {
     this.roll = this.$store.state.roll
-    this.notificationId = this.$route.params['id']
+    const notificationId = this.$route.params['id']
+    const uid = firebase.auth().currentUser.uid;
+    const accountDb = firebase.firestore().collection('account')
     const notificationDb = firebase.firestore().collection('notifications')
 
     // (2) 選択した通知データを取得
-    const changeLooked = async () => {
-      const selectNotification = await notificationDb.where('notificationId', '==', this.notificationId).get();
-      const doc = selectNotification.docs[0].id;
-      const data = selectNotification.docs[0].data();
+    const getNotification = async () => {
+      const notification = await notificationDb.where('notificationId', '==', notificationId).get();
+      const data = notification.docs[0].data();
       this.notificationData = data;
-      if(this.roll === "client" || this.roll === "cast") {
-        notificationDb.doc(doc).update({status: 'looked'})
-      }
+    }
+
+    // (3) 通知の未読/既読をデータベースに保存
+    const changeLooked = async () => {
+      const myAccount = await accountDb.where('userId', '==', uid).get();
+      const data = myAccount.docs[0].data();
+      const doc = myAccount.docs[0].id;
+      data.notification[notificationId] = true
+      accountDb.doc(doc).update({
+        notification: data.notification
+      })
+
     }
 
     // (1) 全ての関数を実行
     const allFunction = async () => {
-      await changeLooked();
+      await getNotification();
+      if(this.roll === 'client' || this.roll === 'cast') {
+        await changeLooked();
+      }
     }
 
     allFunction()

@@ -38,7 +38,7 @@ aside {
       }
 
       li {
-        width: 25%;
+        width: calc(100% / 3);
         padding: 15px 0;
         text-align: center;
         background: #ff8c00;
@@ -80,6 +80,7 @@ aside {
             @media only screen and (min-width: 1025px) {
               margin: 0;
               margin-right: 5px;
+              font-size: 1.2rem;
             }
           }
 

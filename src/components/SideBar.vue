@@ -31,12 +31,6 @@
             <p>キャスト</p>
           </router-link>
         </li>
-        <li>
-          <router-link to="/notification">
-            <i class="far fa-bell"></i>
-            <p>通知</p>
-          </router-link>
-        </li>
       </ul>
     </nav>
 

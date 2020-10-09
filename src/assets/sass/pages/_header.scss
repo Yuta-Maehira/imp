@@ -7,20 +7,66 @@ header {
     text-align: right;
   }
 
-  img {
-    width: 30px;
-    height: 30px;
-    margin: 5px 10px 5px 10px;
-    vertical-align: bottom;
-    border-radius: 50%;
-    cursor: pointer;
+  .site-logo-img {
+    @media only screen and (min-width: 1025px) {
+      display: none;
+    }
 
-    &:nth-child(1) {
+    img {
+      width: 30px;
+      height: 30px;
+      margin: 5px 10px 5px 10px;
+      vertical-align: bottom;
+      border-radius: 50%;
+      cursor: pointer;
       @media only screen and (min-width: 1025px) {
         display: none;
       }
     }
   }
+
+  .header-right-box {
+    display: flex;
+    justify-content: flex-end;
+
+    .header-notification-box {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      margin: 5px 15px;
+      text-align: center;
+      @media only screen and (min-width: 1025px) {
+        margin: 5px 0;
+      }
+  
+      i {
+        color: #fff;
+        font-size: 1.6rem;
+        line-height: 30px;
+      }
+  
+      .header-notification-circle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 15px;
+        height: 15px;
+        background: #ff8c00;
+        border-radius: 50%;
+      }
+    }
+  
+  
+    img {
+      width: 30px;
+      height: 30px;
+      margin: 5px 10px 5px 10px;
+      vertical-align: bottom;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+
 
   .header-account-menu-active {
     display: none;
@@ -53,18 +99,5 @@ header {
         color: #fff;
       }
     }
-  }
-}
-
-main {
-  .btn {
-    width: 150px;
-    margin: 30px auto 50px;
-    padding: 8px 0;
-    text-align: center;
-    background: #ff8c00;
-    border: 1px solid #808080;
-    border-radius: 5px;
-    color: #ffe4b5;
   }
 }

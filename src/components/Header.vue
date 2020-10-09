@@ -2,13 +2,20 @@
   <header>
     
     <!-- サイトのロゴ画像 -->
-    <router-link to="/dashboard">
+    <router-link to="/dashboard" class="site-logo-img">
       <img src="../assets/image/site_logo.jpg" alt="サイトのロゴ画像">
     </router-link>
 
-    <!-- メニューボタンのプロフィール画像表示 -->
-    <img  @click="changeIsActive" v-if="imgurl" :src="imgurl" alt="アカウント画像">
-    <img  @click="changeIsActive" v-else src="@/assets/image/top_account_image.jpg" alt="アカウント画像">
+    <div class="header-right-box">
+      <router-link to="/notification" class="header-notification-box" tag="div">
+        <i class="fas fa-bell"></i>
+        <div v-if="unreadNotification" class="header-notification-circle"></div>
+      </router-link>
+
+      <!-- メニューボタンのプロフィール画像表示 -->
+      <img  @click="changeIsActive" v-if="imgurl" :src="imgurl" alt="アカウント画像">
+      <img  @click="changeIsActive" v-else src="@/assets/image/top_account_image.jpg" alt="アカウント画像">
+    </div>
 
     <!-- メニュー一覧 -->
     <ul :class="[{'header-account-menu-active': isActive}, 'header-account-menu']">
@@ -28,7 +35,8 @@ export default {
     return {
       roll: '',
       isActive: true,
-      imgurl: ''
+      imgurl: '',
+      unreadNotification: false
     }
   },
   created() {
@@ -43,7 +51,17 @@ export default {
       return myData;
     }
 
-    // (3) 画像のパスがあればURLを取得
+    // (3) 通知の未読/既読をチェック
+    const notificationCheck = async (myData) => {
+      const notifications = myData.notification;
+      Object.keys(notifications).forEach(notification => {
+        if(!notifications[notification]) {
+          this.unreadNotification = true;
+        }
+      })
+    }
+
+    // (4) 画像のパスがあればURLを取得
     const getImgUrl = async (myData) => {
       if(myData.imgpath !== '') {
         const imgpath = myData.imgpath;
@@ -55,6 +73,9 @@ export default {
     // (1) 全ての関数を実行
     const allFunction = async () => {
       const myData = await getAccount();
+      if(this.roll === 'client' || this.roll === 'cast') {
+        await notificationCheck(myData)
+      }
       await getImgUrl(myData);
     }
 

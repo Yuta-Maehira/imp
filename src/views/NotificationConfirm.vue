@@ -75,7 +75,8 @@ export default {
   },
   methods: {
     notificationCreate() {
-      const db = firebase.firestore()
+      const db = firebase.firestore();
+      const accountDb = db.collection('account');
       const notificationDb = db.collection('notifications');
 
       // キャンペーンにユニークなidをつける処理
@@ -89,9 +90,35 @@ export default {
           this.uniqueNumber = 1;
         })
       }
+      
+      // castのアカウントデータベースに通知を保存
+      const addToCastAccount = async () => {
+        const casts = await accountDb.where('roll', '==', 'cast').get();
+        casts.forEach(cast => {
+          const notification = cast.data().notification;
+          notification[String(this.uniqueNumber)] = false;
+          const doc = cast.id;
+          accountDb.doc(doc).update({
+            notification: notification
+          })
+        })
+      }
+      
+      // castのアカウントデータベースに通知を保存
+      const addToClientAccount = async () => {
+        const clients = await accountDb.where('roll', '==', 'client').get();
+        clients.forEach(client => {
+          const notification = client.data().notification;
+          notification[String(this.uniqueNumber)] = false;
+          const doc = client.id;
+          accountDb.doc(doc).update({
+            notification: notification
+          })
+        })
+      }
 
       // firestoreに通知データを保存
-      const addData = () => {
+      const addToNotification = () => {
         notificationDb.add({
           notificationId: String(this.uniqueNumber),
           title: this.notificationDataObject.notificationTitle,
@@ -106,10 +133,13 @@ export default {
         })
       }
 
+
       // (1) 全ての関数を実行
       const allFunction = async () => {
-        await getUniqueNumber()
-        await addData()
+        await getUniqueNumber();
+        if(this.notificationDataObject.destination === 'client') await addToClientAccount();
+        if(this.notificationDataObject.destination === 'cast') await addToCastAccount();
+        await addToNotification()
       }
 
       allFunction()

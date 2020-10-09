@@ -14,7 +14,7 @@
             <paginate class="paginate" name="paginate-log" :list="logs" :per="10" tag="div">
 
               <!-- 各通知のブロック(ループ処理) -->
-              <article :class="['notification-box', log.status]" v-for="(log, index) in paginated('paginate-log')" :key="index">
+              <article :class="['notification-box', {'looked': log.status}]" v-for="(log, index) in paginated('paginate-log')" :key="index">
                 <router-link :to="'/notification/detail/' + log.notificationId" tag="div" class="notification-link-box">
                   <div class="notification-info">
                     <div>
@@ -65,11 +65,10 @@ export default {
       roll: localStorage.roll,
       logs: [],
       paginate: ['paginate-log'],
-      notificationChecked: true
+      notificationChecked: false
     }
   },
   created() {
-    console.log('ok')
     const uid = firebase.auth().currentUser.uid
     const accountDb = firebase.firestore().collection('account')
     const notificationDb = firebase.firestore().collection('notifications')
@@ -77,8 +76,8 @@ export default {
     // (2) 自分のアカウントデータを取得
     const getMyAccountData = async () => {
       const myAccount = await accountDb.where('userId', '==', uid ).get();
-      const myAccountDate = myAccount.docs[0].data().createData;
-      return myAccountDate;
+      const myAccountData = myAccount.docs[0].data();
+      return myAccountData;
     }
 
     // (3) 通知データを取得し、変数に格納
@@ -92,25 +91,46 @@ export default {
     }
 
     // (3) 通知の作成日時、自分のアカウント作成日時を比較し表示制限
-    const checkDate = async (notificationDataArray, myAccountDate) => {
+    const checkDate = async (notificationDataArray, myAccountData) => {
+      const myNotificationDataArray = []
       for(let i = 0; i < notificationDataArray.length; i++) {
         const notificationData = notificationDataArray[i];
         const notificationCreateDate = notificationData.createDate;
         if(this.roll === 'admin') {
-          this.logs.push(notificationData);
-        } else if(this.roll === 'client' && notificationData.destination === 'client' && myAccountDate < notificationCreateDate) {
-          this.logs.push(notificationData);
-        } else if(this.roll === 'cast' && notificationData.destination === 'cast' && myAccountDate < notificationCreateDate) {
-          this.logs.push(notificationData);
+          myNotificationDataArray.push(notificationData);
+        } else if(this.roll === 'client' && notificationData.destination === 'client' && myAccountData.createData < notificationCreateDate) {
+          const id = notificationData.notificationId;
+          if(myAccountData.notification[id]) {
+            notificationData.status = true;
+          }
+          myNotificationDataArray.push(notificationData);
+        } else if(this.roll === 'cast' && notificationData.destination === 'cast' && myAccountData.createData < notificationCreateDate) {
+          const id = notificationData.notificationId;
+          if(myAccountData.notification[id]) {
+            notificationData.status = true;
+          }
+          myNotificationDataArray.push(notificationData);
         }
       }
+      return myNotificationDataArray;
+    }
+
+    // (4) notificationのデータを降順にソート
+    const notificationSort = (array) => {
+      array.sort((to, from) => {
+        if (to.createDate > from.createDate) return -1;
+        if (to.createDate < from.createDate) return 1;
+        return 0;
+      })
+      this.logs = array;
     }
 
     // (1) 全ての関数を実行
     const allFunction = async () => {
-      const myAccountDate = await getMyAccountData()
-      const notificationDataArray = await getNotification()
-      await checkDate(notificationDataArray, myAccountDate)
+      const myAccountData = await getMyAccountData();
+      const notificationDataArray = await getNotification();
+      const myNotificationDataArray = await checkDate(notificationDataArray, myAccountData);
+      await notificationSort(myNotificationDataArray);
     }
 
     allFunction()

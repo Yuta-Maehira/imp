@@ -70,6 +70,7 @@ export default new Vuex.Store({
                 adress2: "",
                 apartment: "",
                 tell: "",
+                notification: {},
                 specialPercent: '未選択',
                 campaignPercent: '未選択',
                 specialEditDate: null,
@@ -98,6 +99,7 @@ export default new Vuex.Store({
                 branch: "",
                 accountNum: "",
                 pr: "",
+                notification: {},
                 myInstagram: {
                   accountId: "",
                   accountName: "",
