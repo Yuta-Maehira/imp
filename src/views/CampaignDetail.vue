@@ -12,55 +12,51 @@
           <div class="btn already-apply" v-if="roll === 'cast' && !isApplied">応募済</div>
 
           <!-- キャンペーン画像のカルーセル -->
-          <section>
-            <carousel
-              :per-page="1"
-              :navigation-enabled="true"
-              navigation-prev-label="〈"
-              navigation-next-label="〉">
-              <slide v-for="imgurl in campaignData.imgurl" :key="imgurl">
-                <img v-if="imgurl" :src="imgurl" alt="キャンペーンの画像">
-                <img v-else src="@/assets/image/no_image.png">
-              </slide>
-            </carousel>
-          </section>
+          <carousel
+            :per-page="1"
+            :navigation-enabled="true"
+            navigation-prev-label="〈"
+            navigation-next-label="〉">
+            <slide v-for="imgurl in campaignData.imgurl" :key="imgurl">
+              <img v-if="imgurl" :src="imgurl" alt="キャンペーンの画像">
+              <img v-else src="@/assets/image/no_image.png">
+            </slide>
+          </carousel>
 
           <!-- キャンペーン情報 -->
-          <section>
-            <table class="campaign-detail-table">
-              <tbody>
-                <tr>
-                  <th>
-                    <div>タイトル</div>
-                  </th>
-                  <td>
-                    <div>{{ campaignData.title }}</div>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    <div>希望SNS</div>
-                  </th>
-                  <td>
-                    <div>
-                      <span v-if="campaignData.instagram"><i class="fab fa-instagram"></i></span>
-                      <span v-if="campaignData.twitter"><i class="fab fa-twitter"></i></span>
-                      <span v-if="campaignData.youtube"><i class="fab fa-youtube"></i></span>
-                      <span v-if="campaignData.tiktok"><i class="fab fa-tiktok"></i></span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    <div>報酬金額</div>
-                  </th>
-                  <td>
-                    <div>{{ campaignData.price }}円</div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
+          <table class="campaign-detail-table">
+            <tbody>
+              <tr>
+                <th>
+                  <div>タイトル</div>
+                </th>
+                <td>
+                  <div>{{ campaignData.title }}</div>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <div>希望SNS</div>
+                </th>
+                <td>
+                  <div>
+                    <span v-if="campaignData.instagram"><i class="fab fa-instagram"></i></span>
+                    <span v-if="campaignData.twitter"><i class="fab fa-twitter"></i></span>
+                    <span v-if="campaignData.youtube"><i class="fab fa-youtube"></i></span>
+                    <span v-if="campaignData.tiktok"><i class="fab fa-tiktok"></i></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <div>報酬金額</div>
+                </th>
+                <td>
+                  <div>{{ campaignData.price }}円</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           
           <!-- キャンペーン内容 -->
           <section>

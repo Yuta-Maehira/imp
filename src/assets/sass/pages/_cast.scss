@@ -2,64 +2,71 @@
   margin: 0;
   padding: 0;
 
-  .paginate {
-    margin: 50px 0;
-    @media only screen and (min-width: 1025px)  {
-      @include listLayout(50px);
-    }
+  .cast {
 
-    & > div + div {
-      border-top: 1px solid #c0c0c0;
-    }
-
-    .cast-box {
-      @include boxLayout;
-
-      .cast-link-box {
-        display: flex;
-        @media only screen and (min-width: 1025px)  {
-          display: block;
-        }
-
-        .img-box {
-          @include imgBoxSpLayout(20%);
+    .paginate {
+      margin: 50px 0;
+      @media only screen and (min-width: 1025px)  {
+        @include listLayout(50px);
+      }
+  
+      & > div + div {
+        border-top: 1px solid #c0c0c0;
+      }
+  
+      .cast-box {
+        @include boxLayout;
+  
+        .cast-link-box {
+          display: flex;
           @media only screen and (min-width: 1025px)  {
-            @include imgBoxPcLayout(60%);
-            margin: 30px auto;
+            display: block;
           }
-          
-          &::before {
-            @include imgBoxBeforeLayout;
-          }
-
-          img {
-            @include imgLayout;
-          }
-        }
-
-        .cast-info {
-          @include listBoxLayout;
-
-          .cast-name {
-            @include listBoxTitleLayout;
-          }
-
-          .sns-icon {
-
-            i {
-              @include iconLayout;
+  
+          .img-box {
+            @include imgBoxSpLayout(20%);
+            @media only screen and (min-width: 1025px)  {
+              @include imgBoxPcLayout(60%);
+              margin: 30px auto;
             }
-
-            .active > i {
-              color: #0000ff;
+            
+            &::before {
+              @include imgBoxBeforeLayout;
+            }
+  
+            img {
+              @include imgLayout;
             }
           }
+  
+          .cast-info {
+            @include listBoxLayout;
+  
+            .cast-name {
+              @include listBoxTitleLayout;
+            }
+  
+            .sns-icon {
+  
+              span {
+  
+                i {
+                  @include iconLayout;
+                }
 
-          .inquiry {
-            @include listBoxInquiryLayout;
+                &.active > i {
+                  color: #0000ff;
+                }
+              }
+            }
+  
+            .inquiry {
+              @include listBoxInquiryLayout;
+            }
           }
         }
       }
     }
   }
+
 }

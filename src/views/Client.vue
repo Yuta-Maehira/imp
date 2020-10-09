@@ -7,34 +7,36 @@
         <section class="client-section">
           <h2>クライアント一覧</h2>
         
-          <paginate class="paginate" name="paginate-log" :list="logs" :per="10" tag="div">
+          <div class="client">
+            <paginate class="paginate" name="paginate-log" :list="logs" :per="10" tag="div">
 
-            <!-- 各クライアントのブロック(ループ処理) -->
-            <article class="client-box" v-for="(log, index) in paginated('paginate-log')" :key="index">
-              <router-link :to="'/client/detail/' + log.accountId" tag="div" class="client-link-box">
+              <!-- 各クライアントのブロック(ループ処理) -->
+              <article class="client-box" v-for="(log, index) in paginated('paginate-log')" :key="index">
+                <router-link :to="'/client/detail/' + log.accountId" tag="div" class="client-link-box">
 
-                <!-- クライアントの画像 -->
-                <div class="img-box">
-                  <img v-if="log.imgurl" :src="log.imgurl" alt="クライアントの画像">
-                  <img v-else src="../assets/image/no_image.png" alt="クライアントの画像">
-                </div>
-
-                <!-- クライアントのプロフィールの内容 -->
-                <div class="client-info">
-                  <div class="client-name-info">
-                    <h3 class="client-name">{{ log.client ? nameLimit(log.client) : nameLimit('未設定') }}</h3>
-                    <p class="client-staff"><span class="title">担当: </span>{{ log.staff ? log.staff : '未設定' }}</p>
+                  <!-- クライアントの画像 -->
+                  <div class="img-box">
+                    <img v-if="log.imgurl" :src="log.imgurl" alt="クライアントの画像">
+                    <img v-else src="../assets/image/no_image.png" alt="クライアントの画像">
                   </div>
-                  <div v-if="roll === 'admin'" class="inquiry">
-                    <p class="email">{{ log.email ? log.email : '未設定' }}</p>
-                    <p class="tell">{{ log.tell ? log.tell : '未設定' }}</p>
+
+                  <!-- クライアントのプロフィールの内容 -->
+                  <div class="client-info">
+                    <div class="client-name-info">
+                      <h3 class="client-name">{{ log.client ? nameLimit(log.client) : nameLimit('未設定') }}</h3>
+                      <p class="client-staff"><span class="title">担当: </span>{{ log.staff ? log.staff : '未設定' }}</p>
+                    </div>
+                    <div v-if="roll === 'admin'" class="inquiry">
+                      <p class="email">{{ log.email ? log.email : '未設定' }}</p>
+                      <p class="tell">{{ log.tell ? log.tell : '未設定' }}</p>
+                    </div>
                   </div>
-                </div>
 
-              </router-link>
-            </article>
+                </router-link>
+              </article>
 
-          </paginate>
+            </paginate>
+          </div>
         </section>
 
         <!-- ページネーション -->

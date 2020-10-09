@@ -1,109 +1,99 @@
 .contact-cast-section {
   margin: 0;
   padding: 0;
-
-  .contact-box {
-    margin: 50px 0;
   
+  .contact-cast {
+    margin: 50px 0;
     @media only screen and (min-width: 1025px)  {
-      max-width: 1000px;
-      margin: 100px auto;
+      @include listLayout(50px);
     }
   
-    .contact-cast {
-      padding: 0;
-    
-      .paginate {
-        @media only screen and (min-width: 1025px)  {
-          width: 100%;
+    .paginate {
+      @extend .contact-cast;
+  
+      & > div + div {
+        border-top: 1px solid #c0c0c0;
+      }
+  
+      .cast-box {
+        position: relative;
+        @include boxLayout;
+  
+        .cast-link-box {
           display: flex;
-          flex-wrap: wrap;
-        }
-    
-        & > div + div {
-          border-top: 1px solid #c0c0c0;
-        }
-    
-        .cast-box {
-          position: relative;
-          @include boxLayout;
-    
-          .cast-link-box {
-            display: flex;
+          @media only screen and (min-width: 1025px)  {
+            display: block;
+          }
+  
+          .img-box {
+            @include imgBoxSpLayout(20%);
             @media only screen and (min-width: 1025px)  {
-              display: block;
+              @include imgBoxPcLayout(60%);
+              margin: 30px auto;
             }
-    
-            .img-box {
-              @include imgBoxSpLayout(20%);
-              @media only screen and (min-width: 1025px)  {
-                @include imgBoxPcLayout(60%);
-                margin: 30px auto;
-              }
-    
-              &::before {
-                @include imgBoxBeforeLayout;
-              }
-    
-              img {
-                @include imgLayout;
-              }
+  
+            &::before {
+              @include imgBoxBeforeLayout;
             }
-    
-            .cast-info {
-              @include listBoxLayout;
-    
-              .cast-name {
-                @include listBoxTitleLayout;
-              }
   
-              .sns-icon {
-  
-                i {
-                  @include iconLayout;
-                }
-    
-                .active > i {
-                  color: #0000ff;
-                }
-              }
-    
-              .inquiry {
-                @include listBoxInquiryLayout;
-              }
+            img {
+              @include imgLayout;
             }
           }
-    
-          .message-btn {
-            display: flex;
-            position: absolute;
-            top: 8px;
-            right: 0px;
-            @media only screen and (min-width: 600px) {
-              top: 20px;
-              right: 20px;
+  
+          .cast-info {
+            @include listBoxLayout;
+  
+            .cast-name {
+              @include listBoxTitleLayout;
             }
-            @media only screen and (min-width: 1025px)  {
-              top: -12px;
-              right: -10px;
-            }
-    
-            div {
-              width: 70px;
-              padding: 4px 0;
-              font-size: 0.7rem;
-              font-weight: bold;
-              text-align: center;
-              background: #ff8c00;
-              border: 1px solid #808080;
-              border-radius: 5px;
-              color: #ffe4b5;
-              cursor: pointer;
-    
-              &:nth-child(2) {
-                margin-left: 5px;
-                background: #ff0000;
+
+            .sns-icon {
+
+              i {
+                @include iconLayout;
               }
+  
+              .active > i {
+                color: #0000ff;
+              }
+            }
+  
+            .inquiry {
+              @include listBoxInquiryLayout;
+            }
+          }
+        }
+  
+        .message-btn {
+          display: flex;
+          position: absolute;
+          top: 8px;
+          right: 0px;
+          @media only screen and (min-width: 600px) {
+            top: 20px;
+            right: 20px;
+          }
+          @media only screen and (min-width: 1025px)  {
+            top: -12px;
+            right: -10px;
+          }
+  
+          div {
+            width: 70px;
+            padding: 4px 0;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-align: center;
+            background: #ff8c00;
+            border: 1px solid #808080;
+            border-radius: 5px;
+            color: #ffe4b5;
+            cursor: pointer;
+  
+            &:nth-child(2) {
+              margin-left: 5px;
+              background: #ff0000;
             }
           }
         }
@@ -111,6 +101,7 @@
     }
     
     .client-box {
+      position: relative;
       @include boxLayout;
     
       .client-link-box {
@@ -192,137 +183,138 @@
         }
       }
     }
-    
-    .overlay-box {
-      z-index:1;
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background-color:rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    
-      .message-box,
-      .alert-box {
-        border: 1px solid #696969;
-        z-index:2;
-        width:90%;
-        max-width: 650px;
-        background: #fff;
-    
-        .name {
-          display: flex;
-          margin: 10px 0;
-          text-align: center;
-          font-size: 0.7rem;
-          @media only screen and (min-width: 600px) {
-            font-size: 1rem;
-          }
-    
-          div {
-            width: 100%;
-          }
-        }
-    
-        .helfwidth {
-    
-          div {
-            width: 50%;
-          }
-        }
-    
-        .message {
-          height: 300px;
-          padding: 20px 5px;
-          background: #fffaf0;
-          overflow: auto;
-    
-          .castmessage {
-            display: flex;
-            margin-bottom: 20px;
-    
-            p {
-              max-width: 80%;
-              padding: 5px;
-              background: blue;
-              border-radius: 5px;
-              font-size: 0.8rem;
-              color: #ffe4b5;
-            }
-          }
-    
-          .clientmessage {
-            margin-bottom: 20px;
-    
-            p {
-              display: inline-block;
-              max-width: 80%;
-              margin-left: auto;
-              padding: 5px;
-              background: #ff8c00;
-              border-radius: 5px;
-              font-size: 0.8rem;
-            }
-          }
-        }
-    
-        .input-box {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin: 10px 5px;
-    
-          textarea {
-            width: 100%;
-            margin-right: 3px;
-            font-size: 1rem;
+  }
   
-            &:focus {
-              background: #f5deb3;
-            }
-          }
-    
-          i {
-            padding: 6px;
-            font-size: 1.5rem;
-            background: #ff8c00;
-            border-radius: 50%;
+  
+  .overlay-box {
+    z-index:1;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .message-box,
+    .alert-box {
+      border: 1px solid #696969;
+      z-index:2;
+      width:90%;
+      max-width: 650px;
+      background: #fff;
+  
+      .name {
+        display: flex;
+        margin: 10px 0;
+        text-align: center;
+        font-size: 0.7rem;
+        @media only screen and (min-width: 600px) {
+          font-size: 1rem;
+        }
+  
+        div {
+          width: 100%;
+        }
+      }
+  
+      .helfwidth {
+  
+        div {
+          width: 50%;
+        }
+      }
+  
+      .message {
+        height: 300px;
+        padding: 20px 5px;
+        background: #fffaf0;
+        overflow: auto;
+  
+        .castmessage {
+          display: flex;
+          margin-bottom: 20px;
+  
+          p {
+            max-width: 80%;
+            padding: 5px;
+            background: blue;
+            border-radius: 5px;
+            font-size: 0.8rem;
             color: #ffe4b5;
+          }
+        }
+  
+        .clientmessage {
+          margin-bottom: 20px;
+  
+          p {
+            display: inline-block;
+            max-width: 80%;
+            margin-left: auto;
+            padding: 5px;
+            background: #ff8c00;
+            border-radius: 5px;
+            font-size: 0.8rem;
           }
         }
       }
-    
-      .alert-box {
-        padding: 10px;
-    
-        p {
-          margin-bottom: 5px;
-          font-weight: bold;
-          color: #ff8c00;
+  
+      .input-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 5px;
+  
+        textarea {
+          width: 100%;
+          margin-right: 3px;
+          font-size: 1rem;
+
+          &:focus {
+            background: #f5deb3;
+          }
         }
-    
-        .btn-box {
-          display: flex;
-          justify-content: space-between;
-          margin-top: 10px;
-    
-          div {
-            width: 45%;
-            padding: 4px 0;
-            font-weight: bold;
-            text-align: center;
-            background: #ff8c00;
-            border: 1px solid #808080;
-            border-radius: 5px;
-            color: #ffe4b5;
-            cursor: pointer;
-    
-            &:nth-child(1) {
-              background: #ff0000;
-            }
+  
+        i {
+          padding: 6px;
+          font-size: 1.5rem;
+          background: #ff8c00;
+          border-radius: 50%;
+          color: #ffe4b5;
+        }
+      }
+    }
+  
+    .alert-box {
+      padding: 10px;
+  
+      p {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #ff8c00;
+      }
+  
+      .btn-box {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+  
+        div {
+          width: 45%;
+          padding: 4px 0;
+          font-weight: bold;
+          text-align: center;
+          background: #ff8c00;
+          border: 1px solid #808080;
+          border-radius: 5px;
+          color: #ffe4b5;
+          cursor: pointer;
+  
+          &:nth-child(1) {
+            background: #ff0000;
           }
         }
       }

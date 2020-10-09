@@ -7,57 +7,59 @@
         <section class="contact-section">
           <h2>コンタクト</h2>
 
-          <paginate class="paginate" name="paginate-log" :list="logs" :per="10">
+          <div class="contact">
+            <paginate class="paginate" name="paginate-log" :list="logs" :per="10">
 
-            <!-- 取引中のキャンペーンのブロック -->
-            <article class="campaign-box" v-for="(log, index) in paginated('paginate-log')" :key="index">
-              <router-link :to="'/contact/cast/' + log.campaignid + '?uid=' + log.uid" tag="div"
-              class="campaign-link-box">
+              <!-- 取引中のキャンペーンのブロック -->
+              <article class="campaign-box" v-for="(log, index) in paginated('paginate-log')" :key="index">
+                <router-link :to="'/contact/cast/' + log.campaignid + '?uid=' + log.uid" tag="div"
+                class="campaign-link-box">
 
-                <!-- キャンペーンの画像 -->
-                <div class="img-box">
-                  <img v-if="log.imgurl" :src="log.imgurl" alt="キャンペーンの画像">
-                  <img v-else src="../assets/image/no_image.png" alt="キャンペーンの画像">
-                </div>
-
-                <!-- キャンペーンの内容 -->
-                <div class="campaign-info">
-                  <h3 class="campaign-title">{{ titleLimit(log.title) }}</h3>
-                  <p class="campaign-description">{{ descreptionLimit(log.description) }}</p>
-                  <div class="campaign-under-box">
-                    <div class="sns-icon">
-                      <span :class="{ active: log.instagram }">
-                        <i class="fab fa-instagram"></i>
-                      </span>
-                      <span :class="{ active: log.twitter }">
-                        <i class="fab fa-twitter active"></i>
-                      </span>
-                      <span :class="{ active: log.youtube }">
-                        <i class="fab fa-youtube"></i>
-                      </span>
-                      <span :class="{ active: log.tiktok }">
-                        <i class="fab fa-tiktok"></i>
-                      </span>
-                    </div>
-                    <p class="campaign-price">{{ log.price }}<span>円</span></p>
+                  <!-- キャンペーンの画像 -->
+                  <div class="img-box">
+                    <img v-if="log.imgurl" :src="log.imgurl" alt="キャンペーンの画像">
+                    <img v-else src="../assets/image/no_image.png" alt="キャンペーンの画像">
                   </div>
-                </div>
-              </router-link>
-            </article>
 
-          </paginate>
+                  <!-- キャンペーンの内容 -->
+                  <div class="campaign-info">
+                    <h3 class="campaign-title">{{ titleLimit(log.title) }}</h3>
+                    <p class="campaign-description">{{ descreptionLimit(log.description) }}</p>
+                    <div class="campaign-under-box">
+                      <div class="sns-icon">
+                        <span :class="{ active: log.instagram }">
+                          <i class="fab fa-instagram"></i>
+                        </span>
+                        <span :class="{ active: log.twitter }">
+                          <i class="fab fa-twitter active"></i>
+                        </span>
+                        <span :class="{ active: log.youtube }">
+                          <i class="fab fa-youtube"></i>
+                        </span>
+                        <span :class="{ active: log.tiktok }">
+                          <i class="fab fa-tiktok"></i>
+                        </span>
+                      </div>
+                      <p class="campaign-price">{{ log.price }}<span>円</span></p>
+                    </div>
+                  </div>
+                </router-link>
+              </article>
 
+            </paginate>
+          </div>
+
+          <paginate-links 
+            for="paginate-log" 
+            :limit="3"
+            :classes="{
+              'ul': 'pagination',
+              'li': 'pagination-list',
+              'li > a': 'pagination-link'
+            }" 
+            :show-step-links="true"
+          ></paginate-links>
         </section>
-        <paginate-links 
-          for="paginate-log" 
-          :limit="3"
-          :classes="{
-            'ul': 'pagination',
-            'li': 'pagination-list',
-            'li > a': 'pagination-link'
-          }" 
-          :show-step-links="true"
-        ></paginate-links>
       </main>
     </div>
   </div>

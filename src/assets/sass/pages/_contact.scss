@@ -1,79 +1,81 @@
-
-
 .contact-section {
   margin: 0;
   padding: 0;
 
-  .paginate {
-    margin: 50px 0;
-    @media only screen and (min-width: 1025px) {
-      @include listLayout(50px);
-    }
+  .contact {
 
-    & > div + div {
-      border-top: 1px solid #c0c0c0;
-    }
-
-    .campaign-box {
-      @include boxLayout;
-
-      .campaign-link-box {
-        display: flex;
-        @media only screen and (min-width: 1025px) {
-          display: block;
-        }
-
-        .img-box {
-          @include imgBoxSpLayout(20%);
-          @media only screen and (min-width: 1025px)  {
-            @include imgBoxPcLayout(60%);
-            margin: 30px auto;
+    .paginate {
+      margin: 50px 0;
+      @media only screen and (min-width: 1025px) {
+        @include listLayout(50px);
+      }
+  
+      & > div + div {
+        border-top: 1px solid #c0c0c0;
+      }
+  
+      .campaign-box {
+        @include boxLayout;
+  
+        .campaign-link-box {
+          display: flex;
+          @media only screen and (min-width: 1025px) {
+            display: block;
           }
-
-          &::before {
-            content: "";
-            @include imgBoxBeforeLayout;
+  
+          .img-box {
+            @include imgBoxSpLayout(20%);
+            @media only screen and (min-width: 1025px)  {
+              @include imgBoxPcLayout(60%);
+              margin: 30px auto;
+            }
+  
+            &::before {
+              content: "";
+              @include imgBoxBeforeLayout;
+            }
+  
+            img {
+              @include imgLayout;
+            }
           }
-
-          img {
-            @include imgLayout;
-          }
-        }
-
-        .campaign-info {
-          @include listBoxLayout;
-
-          .campaign-title {
-            @include listBoxTitleLayout;
-          }
-          
-          .campaign-description {
-            @include listBoxDescriptionLayout;
-          }
-
-          .campaign-under-box {
-            @include listBoxUnderLayout;
-
-            .sns-icon {
-
-              span {
-
-                i {
-                  @include iconLayout;
-                }
-
-                &.active > i {
-                  color: #0000ff;
+  
+          .campaign-info {
+            @include listBoxLayout;
+  
+            .campaign-title {
+              @include listBoxTitleLayout;
+            }
+            
+            .campaign-description {
+              @include listBoxDescriptionLayout;
+            }
+  
+            .campaign-under-box {
+              @include listBoxUnderLayout;
+  
+              .sns-icon {
+  
+                span {
+  
+                  i {
+                    @include iconLayout;
+                  }
+  
+                  &.active > i {
+                    color: #0000ff;
+                  }
                 }
               }
-            }
-
-            .campaign-price {
-              @include listBoxPriceLayout;
+  
+              .campaign-price {
+                @include listBoxPriceLayout;
+              }
             }
           }
         }
       }
     }
   }
+
 }

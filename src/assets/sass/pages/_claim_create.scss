@@ -3,71 +3,68 @@
   margin: 0;
   padding: 0;
 
-  .claim-create {
+  .notes {
+    width: 100%;
     max-width: 1000px;
     margin: 50px auto;
-
-    .notes {
-      width: 100%;
-      margin: 50px 0;
-      padding: 10px 20px;
-      border: 1px solid #d3d3d3;
-      border-radius: 5px;
-      background: #f5f5f5;
-      
-      h3 {
-        margin: 0 0 5px;
-        color: #808080;
-        font-size: 0.9rem;
-        text-align: left;
-        border-bottom: 1px solid #d3d3d3;
-      }
+    padding: 10px 20px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    background: #f5f5f5;
     
-      p {
-        margin-left: 20px;
-        color: #a9a9a9;
-        font-size: 0.7rem;
-      }
+    h3 {
+      margin: 0 0 5px;
+      color: #808080;
+      font-size: 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid #d3d3d3;
     }
+  
+    p {
+      margin-left: 20px;
+      color: #a9a9a9;
+      font-size: 0.7rem;
+    }
+  }
+  
+  .claim-create-table {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0;
+  
+    tr {
+  
+      th {
+        width: 70%;
+        padding: 0;
+      }
     
-    .claim-create-table {
-      margin-top: 25px;
-      padding: 0;
+      td {
+        width: 30%;
+        padding: 0;
     
-      tr {
-    
-        th {
-          width: 70%;
-          padding: 0;
-        }
-      
-        td {
-          width: 30%;
-          padding: 0;
-      
-          .claim-create-btn {
-            width: 100px;
-            margin: 5px auto;
-            padding: 3px 0;
-            text-align: center;
-            line-height: 22px;
-            border: 1px solid #d3d3d3;
-            border-radius: 5px;
-            background: #ff8c00;
-    
-            &:hover {
-              background: #fff;
-    
-              i {
-                color: #ff8c00;
-              }
-            }
-    
+        .claim-create-btn {
+          width: 100px;
+          margin: 5px auto;
+          padding: 3px 0;
+          text-align: center;
+          line-height: 22px;
+          border: 1px solid #d3d3d3;
+          border-radius: 5px;
+          background: #ff8c00;
+  
+          &:hover {
+            background: #fff;
+  
             i {
-              position: relative;
-              top: 2px;
-              color: #fff;
+              color: #ff8c00;
             }
+          }
+  
+          i {
+            position: relative;
+            top: 2px;
+            color: #fff;
           }
         }
       }

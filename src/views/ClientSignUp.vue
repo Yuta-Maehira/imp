@@ -1,9 +1,9 @@
 <template>
-  <section class="client-signup-box">
+  <div class="client-signup-box">
 
     <!-- アカウント作成ページのイメージ画像 -->
     <div class="client-signup-img">
-      <img src="../assets/image/client_signup.jpg" alt="ログイン画面の画像">
+      <img src="@/assets/image/client_signup.jpg" alt="ログイン画面の画像">
     </div>
 
     <!-- アカウント作成情報入力フォーム -->
@@ -32,19 +32,20 @@
         </div>
 
         <!-- 利用規約のチェックボックス -->
-        <div class="term">
+        <div class="form-input">
           <label for="check" class="check-label"><input type="checkbox" name="checkbox1" required>利用規約に同意する</label>
         </div>
 
-        <!-- 利用規約ページへのリンク -->
-        <router-link to="/terms" class="term-link">利用規約</router-link>
       </form>
+      
+      <!-- 利用規約ページへのリンク -->
+      <router-link to="/terms" class="term-link" tag="div">利用規約</router-link>
       
       <!-- アカウント作成ボタン -->
       <div class="btn" @click="clientCreateAccount">登録</div>
     </div>
 
-  </section>
+  </div>
 </template>
 
 <script>

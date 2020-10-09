@@ -10,7 +10,7 @@
           <!-- 新規キャンペーン作成ボタン(クライアントのみ) -->
           <router-link v-if="roll === 'client'" to="/campaign/create" tag="div" class="btn">新規案件登録</router-link>
 
-          <section class="campaign">
+          <div class="campaign">
             <paginate class="paginate" name="paginate-log" :list="logs" :per="10">
 
               <!-- 各キャンペーンのブロック(ループ処理) -->
@@ -20,7 +20,7 @@
                   <!-- キャンペーンの画像 -->
                   <div class="img-box">
                     <img v-if="log.imgurl" :src="log.imgurl" alt="キャンペーンの画像">
-                    <img v-else src="../assets/image/no_image.png" alt="キャンペーンの画像">
+                    <img v-else src="@/assets/image/no_image.png" alt="キャンペーンの画像">
                   </div>
 
                   <!-- キャンペーンの内容 -->
@@ -50,7 +50,7 @@
               </article>
               
             </paginate>
-          </section>
+          </div>
 
           <!-- ページネーション -->
           <paginate-links for="paginate-log" :limit="10" :classes="{

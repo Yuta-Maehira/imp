@@ -24,9 +24,13 @@
       @include loginSignupInputLayout;
       @include loginSignupTermLayout;
     }
+  }
 
-    .btn {
-      @include btnLayout;
-    }
+  .term-link {
+    @include loginSignupTermLinkLayout;
+  }
+
+  .btn {
+    @include btnLayout;
   }
 }

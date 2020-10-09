@@ -7,17 +7,17 @@
         <section class="client-detail-section">
           <h2>クライアント詳細</h2>
 
-          <section class="client-basic-data">
+          <section class="client-basic-section">
+            <h3>基本データ</h3>
+            <div class="basic-data">
 
-            <!-- クライアントの画像 -->
-            <div class="img-box client-detail">
-              <img v-if="clientData[0].imgurl" :src="clientData[0].imgurl">
-              <img v-else src="@/assets/image/no_image.png" alt="クライアントの画像">
-            </div>
+              <!-- クライアントの画像 -->
+              <div class="img-box client-detail">
+                <img v-if="clientData[0].imgurl" :src="clientData[0].imgurl">
+                <img v-else src="@/assets/image/no_image.png" alt="クライアントの画像">
+              </div>
 
-            <!-- クライアントの基本データ -->
-            <section class="client-basic-data-section">
-              <h3>基本データ</h3>
+              <!-- クライアントの基本データ -->
               <table>
                 <tbody>
                   <tr>
@@ -69,7 +69,7 @@
                   </tr>
                 </tbody>
               </table>
-            </section>
+            </div>
 
           </section>
 

@@ -1,71 +1,75 @@
 .client-section {
   margin: 0;
   padding: 0;
+
+  .client {
+
+    .paginate {
+      margin: 50px 0;
+      @media only screen and (min-width: 1025px)  {
+        @include listLayout(50px);
+      }
   
-  .paginate {
-    margin: 50px 0;
-    @media only screen and (min-width: 1025px)  {
-      @include listLayout(50px);
-    }
-
-    & > div + div {
-      border-top: 1px solid #c0c0c0;
-    }
-
-    .client-box {
-      @include boxLayout;
-
-      .client-link-box {
-        display: flex;
-        @media only screen and (min-width: 1025px)  {
-          display: block;
-        }
-
-        .img-box {
-          @include imgBoxSpLayout(20%);
+      & > div + div {
+        border-top: 1px solid #c0c0c0;
+      }
+  
+      .client-box {
+        @include boxLayout;
+  
+        .client-link-box {
+          display: flex;
           @media only screen and (min-width: 1025px)  {
-            @include imgBoxPcLayout(60%);
-            margin: 30px auto;
+            display: block;
           }
-
-          &::before {
-            content: "";
-            @include imgBoxBeforeLayout;
-          }
-
-          img {
-            @include imgLayout;
-          }
-        }
-
-        .client-info {
-          @include listBoxLayout;
-
-          .client-name-info {
-            display: flex;
-            justify-content: space-between;
+  
+          .img-box {
+            @include imgBoxSpLayout(20%);
             @media only screen and (min-width: 1025px)  {
-              display: block;
+              @include imgBoxPcLayout(60%);
+              margin: 30px auto;
             }
-
-            .client-name {
-              @include listBoxTitleLayout;
+  
+            &::before {
+              content: "";
+              @include imgBoxBeforeLayout;
             }
-            
-            .client-staff {
-              font-size: 0.8rem;
-
-              .title {
-                font-size: 0.7rem;
+  
+            img {
+              @include imgLayout;
+            }
+          }
+  
+          .client-info {
+            @include listBoxLayout;
+  
+            .client-name-info {
+              display: flex;
+              justify-content: space-between;
+              @media only screen and (min-width: 1025px)  {
+                display: block;
+              }
+  
+              .client-name {
+                @include listBoxTitleLayout;
+              }
+              
+              .client-staff {
+                font-size: 0.8rem;
+  
+                .title {
+                  font-size: 0.7rem;
+                }
               }
             }
-          }
-
-          .inquiry {
-            @include listBoxInquiryLayout;
+  
+            .inquiry {
+              @include listBoxInquiryLayout;
+            }
           }
         }
       }
     }
   }
+  
 }

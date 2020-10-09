@@ -7,12 +7,10 @@
         <section class="contact-cast-section">
           <h2>コンタクト</h2>
 
-          <div class="contact-box">
-
+            <!-- クライアント・管理者のみ表示のキャスト情報 -->
             <div class="contact-cast" v-if="roll !== 'cast'">
               <paginate class="paginate" name="paginate-log" :list="logs" :per="10" tag="div">
 
-                <!------------------- クライアント・管理者のみ表示のキャスト情報 ------------------->
                 
                 <!-- 各キャストのブロック(ループ処理) -->
                 <article class="cast-box" v-for="(log, index) in paginated('paginate-log')" :key="index">
@@ -21,7 +19,7 @@
                     <!-- キャストの画像 -->
                     <div class="img-box">
                       <img v-if="log.imgurl" :src="log.imgurl" alt="キャストの画像">
-                      <img v-else src="../assets/image/no_image.png" alt="キャストの画像">
+                      <img v-else src="@/assets/image/no_image.png" alt="キャストの画像">
                     </div>
 
                     <!-- キャストのプロフィールの内容 -->
@@ -69,41 +67,44 @@
             </div>
 
 
-            <!------------------- キャストのみ表示のクライアント情報 ------------------->
+            <!-- キャストのみ表示のクライアント情報 -->
+            <div class="contact-cast" v-if="roll !== 'client'">
 
-            <!-- 各クライアントのブロック(ループ処理) -->
-            <article v-if="roll === 'cast'" class="client-box">
-              <router-link :to="'/client/detail/' + clientData.accountId" tag="div" class="client-link-box">
+              <!-- 各クライアントのブロック(ループ処理) -->
+              <article v-if="roll === 'cast'" class="client-box">
+                <router-link :to="'/client/detail/' + clientData.accountId" tag="div" class="client-link-box">
 
-                <!-- クライアントの画像 -->
-                <div class="img-box">
-                  <img v-if="clientData.imgurl" :src="clientData.imgurl" alt="クライアントの画像">
-                  <img v-else src="../assets/image/no_image.png" alt="クライアントの画像">
+                  <!-- クライアントの画像 -->
+                  <div class="img-box">
+                    <img v-if="clientData.imgurl" :src="clientData.imgurl" alt="クライアントの画像">
+                    <img v-else src="../assets/image/no_image.png" alt="クライアントの画像">
+                  </div>
+
+                  <!-- クライアントのプロフィールの内容 -->
+                  <div class="client-info">
+                    <div class="client-name-info">
+                      <p class="client-name">{{ clientData.client ? nameLimit(clientData.client) : nameLimit('未設定') }}</p>
+                    </div>
+                    <div class="category">
+                      <p class="client-category" v-for="(category, index) in clientData.category" :key="index">{{ category ? category : '未設定' }}</p>
+                    </div>
+                    <div class="inquiry">
+                      <p class="email">{{ clientData.email ? clientData.email : '未設定' }}</p>
+                      <p class="tell">{{ clientData.tell ? clientData.tell : '未設定' }}</p>
+                    </div>
+                  </div>
+
+                </router-link>
+
+                <!-- チャットボタン -->
+                <div class="message-btn">
+                  <div @click="openModal(clientData.myAccountId, clientData.myUid)">チャット</div>
                 </div>
+              </article>
 
-                <!-- クライアントのプロフィールの内容 -->
-                <div class="client-info">
-                  <div class="client-name-info">
-                    <p class="client-name">{{ clientData.client ? nameLimit(clientData.client) : nameLimit('未設定') }}</p>
-                  </div>
-                  <div class="category">
-                    <p class="client-category" v-for="(category, index) in clientData.category" :key="index">{{ category ? category : '未設定' }}</p>
-                  </div>
-                  <div class="inquiry">
-                    <p class="email">{{ clientData.email ? clientData.email : '未設定' }}</p>
-                    <p class="tell">{{ clientData.tell ? clientData.tell : '未設定' }}</p>
-                  </div>
-                </div>
+            </div>
 
-              </router-link>
-
-              <!-- チャットボタン -->
-              <div class="message-btn">
-                <div @click="openModal(clientData.myAccountId, clientData.myUid)">チャット</div>
-              </div>
-            </article>
-
-            <!------------------- チャットボタンを押した際のポップアップ ------------------->
+            <!-- チャットボタンを押した際のポップアップ -->
 
             <!-- チャット画面 -->
             <div class="overlay-box" v-show="showModal" @click="closeModal">
@@ -142,7 +143,7 @@
               </div>
             </div>
 
-            <!------------------- 取引完了ボタンを押した際のポップアップ ------------------->
+            <!-- 取引完了ボタンを押した際のポップアップ -->
 
             <div class="overlay-box" v-show="alertModal" @click="closeModal">
               <div class="alert-box" @click="stopEvent">
@@ -156,7 +157,6 @@
               </div>
             </div>
 
-          </div>
         </section>
       </main>
     </div>

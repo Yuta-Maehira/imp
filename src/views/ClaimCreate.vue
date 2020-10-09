@@ -7,31 +7,28 @@
         <section class="claim-create-section">
           <h2>請求書作成</h2>
 
-          <div class="claim-create">
+          <!-- 注釈 -->
+          <section class="notes">
+            <h3>※請求書の作成は発行月の翌月に行ってください。</h3>
+            <p>同月に発行すると、誤った請求内容での作成となります</p>
+          </section>
 
-            <!-- 注釈 -->
-            <section class="notes">
-              <h3>※請求書の作成は発行月の翌月に行ってください。</h3>
-              <p>同月に発行すると、誤った請求内容での作成となります</p>
-            </section>
+          <!-- 請求書作成クライアント一覧 -->
+          <table class="claim-create-table">
+            <tbody>
+              <tr v-for="(account,index) in accounts" :key="index">
+                <th>
+                  <div class="claim-client">{{ account.client }}</div>
+                </th>
+                <td>
+                  <div class="claim-create-btn" @click="getMyCampaignData(account)">
+                    <i class="far fa-file-pdf"></i>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-            <!-- 請求書作成クライアント一覧 -->
-            <table class="claim-create-table">
-              <tbody>
-                <tr v-for="(account,index) in accounts" :key="index">
-                  <th>
-                    <div class="claim-client">{{ account.client }}</div>
-                  </th>
-                  <td>
-                    <div class="claim-create-btn" @click="getMyCampaignData(account)">
-                      <i class="far fa-file-pdf"></i>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-          </div>
         </section>
       </main>
     </div>
